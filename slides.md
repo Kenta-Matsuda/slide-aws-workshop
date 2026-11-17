@@ -1,5 +1,8 @@
 ---
 marp: true
+title: 研究室に AI の同僚を 4 人 ― Amazon Quick for Research をやってみた
+description: AWS×文教 LT。AWS 公式ハンズオン Amazon Quick for Research を実際に動かした記録
+lang: ja
 theme: talk2026
 paginate: true
 size: 16:9
