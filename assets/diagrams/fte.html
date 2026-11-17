@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<!-- 背景：大学等教員の職務活動時間割合の推移（文部科学省 FTE 調査 令和5年度 概要 図表17） -->
+<link rel="stylesheet" href="diagram.css">
+<style>
+  #fig { width: 1200px; height: 400px; }
+  .row { position: absolute; left: 0; width: 1200px; height: 50px; display: flex; align-items: center; }
+  .row .y { width: 120px; font-family: var(--font-mono); font-weight: 800; font-size: 20px; }
+  .bar { display: flex; width: 1060px; height: 44px; }
+  .seg { height: 100%; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-weight: 800; font-size: 17px; color: #fff; overflow: hidden; white-space: nowrap; }
+  .c1 { background: var(--hot); } .c2 { background: var(--ink); } .c3 { background: #8a877f; } .c4 { background: #aaa69c; }
+  .c5 { background: #5f5c55; } .c6 { background: #d6d1c4; color: var(--ink); }
+  .legend { position: absolute; left: 120px; top: 330px; display: flex; flex-wrap: wrap; gap: 8px 26px; font-size: 17px; width: 1060px; }
+  .legend span { display: inline-flex; align-items: center; gap: 8px; }
+  .legend i { display: inline-block; width: 18px; height: 18px; }
+</style>
+</head><body>
+<div id="fig"></div>
+<script>
+const data = [
+  ['2002', [46.5, 23.7, 3.4, 2.8, 3.6, 19.9]],
+  ['2008', [39.1, 26.9, 6.0, 4.6, 4.1, 19.3]],
+  ['2013', [35.0, 28.4, 4.9, 5.0, 9.2, 17.5]],
+  ['2018', [32.9, 28.5, 5.0, 5.3, 10.3, 18.0]],
+  ['2023', [32.2, 30.4, 4.5, 4.3, 9.0, 19.7]],
+];
+const names = ['研究', '教育', '社会サービス：研究関連', '社会サービス：教育関連', '診療など', '学内事務など'];
+const fig = document.getElementById('fig');
+data.forEach(([y, v], i) => {
+  const sum = v.reduce((a, b) => a + b, 0);
+  const row = document.createElement('div'); row.className = 'row'; row.style.top = (i * 62) + 'px';
+  row.innerHTML = `<div class="y">${y}</div><div class="bar">` + v.map((x, k) =>
+    `<div class="seg c${k + 1}" style="width:${x / sum * 100}%">${x >= 4.4 ? x.toFixed(1) : ''}</div>`).join('') + '</div>';
+  fig.appendChild(row);
+});
+const lg = document.createElement('div'); lg.className = 'legend';
+lg.innerHTML = names.map((n, k) => `<span><i class="c${k + 1}"></i>${n}</span>`).join('');
+fig.appendChild(lg);
+window.addEventListener('load', async () => { await document.fonts.ready; document.body.dataset.ready = '1'; });
+</script>
+</body></html>

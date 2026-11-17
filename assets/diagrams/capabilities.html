@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<!-- 枠組み：研究プロセスの各フェーズで AI に求められる能力 -->
+<link rel="stylesheet" href="diagram.css">
+<style>
+  #fig { width: 1200px; height: 420px; }
+  table { position: absolute; left: 0; top: 0; width: 1200px; border-collapse: collapse; font-size: 19px; }
+  th, td { border-bottom: 1.5px solid var(--line); height: 70px; text-align: center; }
+  thead th { font-weight: 900; font-size: 20px; height: 56px; border-bottom: 2px solid var(--ink); }
+  td.k { text-align: left; font-weight: 900; padding-left: 8px; width: 330px; line-height: 1.35; }
+  td.k small { display: block; font-size: 15px; color: var(--grey); font-weight: 700; }
+  .dot { display: inline-block; width: 26px; height: 26px; border-radius: 50%; background: var(--ink); }
+  .dot.hot { background: var(--hot); }
+  tr.all td.span { font-weight: 900; color: var(--hot); }
+  tr.all td.span span { display: inline-block; width: 100%; border-top: 3px solid var(--hot); border-bottom: 3px solid var(--hot); padding: 8px 0; }
+</style>
+</head><body>
+<div id="fig">
+<table>
+<thead><tr><th></th><th>課題設定</th><th>文献調査</th><th>研究計画</th><th>データ分析</th><th>成果発信</th></tr></thead>
+<tbody>
+<tr><td class="k">研究室の資料を参照する<small>手順書・過去の研究・データ</small></td><td><i class="dot"></i></td><td><i class="dot"></i></td><td><i class="dot"></i></td><td><i class="dot"></i></td><td><i class="dot"></i></td></tr>
+<tr><td class="k">Web の最新情報を調べる<small>論文・公的な基準・申請の様式</small></td><td></td><td><i class="dot"></i></td><td><i class="dot"></i></td><td></td><td></td></tr>
+<tr><td class="k">データを正確に計算する<small>集計の過程を後から確かめられる</small></td><td></td><td></td><td></td><td><i class="dot"></i></td><td></td></tr>
+<tr class="all"><td class="k">手順をつなげて繰り返す<small>テーマを変えて何度でも実行する</small></td><td colspan="5" class="span"><span>5 つのフェーズを 1 つの手順として実行する</span></td></tr>
+</tbody>
+</table>
+</div>
+<script>
+window.addEventListener('load', async () => { await document.fonts.ready; document.body.dataset.ready = '1'; });
+</script>
+</body></html>
