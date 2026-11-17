@@ -93,7 +93,7 @@ window.addEventListener('load', async () => { await document.fonts.ready;
     const mx = imgW + gutter / 2;
     p.setAttribute('points', `${x1},${y1} ${mx},${y1} ${mx},${y2} ${x2},${y2}`);
     p.setAttribute('fill', 'none');
-    p.setAttribute('stroke', '#ff4d00');
+    p.setAttribute('stroke', '#d9531e');
     p.setAttribute('stroke-width', '3');
     svg.appendChild(p);
   });

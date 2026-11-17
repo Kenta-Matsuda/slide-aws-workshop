@@ -10,15 +10,25 @@ header: '<div class="prog"><i></i><i></i><i></i><i></i><i></i></div>'
 style: |
   section.dense img.wide { max-height: 410px; width: auto; max-width: 100%; margin: 0 auto; }
   section.dense img.wide.short { max-height: 370px; }
+  /* このデッキだけ、テーマの「巨大タイポ」を抑えて落ち着いた見た目にする */
+  :root { --hot: #d9531e; --font-head: "Zen Kaku Gothic New", "Noto Sans JP", sans-serif; --header-label: ""; --header-sub: ""; }
+  section h1, section h2, .big, .mid, .tracks .row.main, .stats .v, .rules .r .k, .steps .st .n, .steps .st b { font-weight: 900; letter-spacing: 0.01em; }
+  section h2 { font-size: 42px; }
+  .num { display: none; }
+  section.cover { display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 90px; }
+  section.cover h1 { font-size: 84px; line-height: 1.25; }
+  section.cover .meta { font-family: var(--font-body); font-weight: 700; letter-spacing: 0.04em; }
+  .big { font-size: 58px; line-height: 1.3; }
+  .tracks .row.main { font-size: 30px; }
+  .stats .v { font-size: 48px; }
+  .steps .st .n { font-size: 48px; }
 ---
 
 <!-- _class: cover -->
 <!-- _header: '' -->
 <!-- _paginate: false -->
 
-<div class="rec">REC</div>
-
-# 研究サイクルを<br><span class="o">AI で</span><br>一周<span class="dot">.</span>
+# 研究サイクルを<br>AI で一周させる
 
 <div class="meta"><span>AWS 公式ハンズオン「Amazon Quick for Research」の応用</span><span><span class="fill">発表者名</span></span></div>
 
@@ -945,9 +955,7 @@ Bedrock と AgentCore を使えば、モデルも画面も処理も自由にエ�
 <!-- _header: '' -->
 <!-- _paginate: false -->
 
-<div class="rec">END</div>
-
-# 研究室の資料を<br><span class="o">Space に</span><br>入れてみよう<span class="dot">.</span>
+# 研究室の資料を<br>Space に入れてみよう
 
 <div class="meta"><span>Amazon Quick for Research</span><span>この資料は <b>CLAUDE CODE</b> と作りました</span></div>
 

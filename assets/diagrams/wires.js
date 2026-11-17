@@ -20,7 +20,7 @@
     if (o.elbow === 'v') pts = [A, [A[0], B[1]], B];
     if (o.elbow === 'hv') { const mx = (A[0] + B[0]) / 2; pts = [A, [mx, A[1]], [mx, B[1]], B]; }
     if (o.elbow === 'vh') { const my = (A[1] + B[1]) / 2; pts = [A, [A[0], my], [B[0], my], B]; }
-    const color = o.hot ? '#ff4d00' : '#0c0c0c';
+    const color = o.hot ? '#d9531e' : '#0c0c0c';
     const p = document.createElementNS(NS, 'polyline');
     p.setAttribute('points', pts.map(q => q.join(',')).join(' '));
     p.setAttribute('fill', 'none'); p.setAttribute('stroke', color); p.setAttribute('stroke-width', '2.5');
@@ -33,9 +33,9 @@
     const svg = document.getElementById('wires');
     svg.innerHTML = `<defs>
       <marker id="ak" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#0c0c0c"/></marker>
-      <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#ff4d00"/></marker>
+      <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#d9531e"/></marker>
       <marker id="aks" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M10 0L0 5L10 10z" fill="#0c0c0c"/></marker>
-      <marker id="ahs" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M10 0L0 5L10 10z" fill="#ff4d00"/></marker>
+      <marker id="ahs" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M10 0L0 5L10 10z" fill="#d9531e"/></marker>
     </defs>`;
   });
 })();
