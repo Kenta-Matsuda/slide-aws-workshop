@@ -1,0 +1,15 @@
+node_modules/
+.claude/settings.local.json
+.claude/.last-check
+
+# 書き出し物（必要ならデッキごとにコミットする）
+slides.html
+slides.pptx
+links.json
+preview/
+
+# 作業用（ワークショップの素材・生のキャプチャ）
+_work/
+_old/
+# 生の画面キャプチャ（メールアドレスが写っているものがあるため公開しない。注釈つきの PNG は assets/diagrams に書き出す）
+assets/shots/raw/

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<!-- TRACK 03：専門家エージェントの1回の処理（2026-11-17 14:41 の実行記録 _work/logs/02-agent-q1.md から） -->
+<link rel="stylesheet" href="diagram.css">
+<script src="wires.js"></script>
+<style>
+  #fig { width: 1200px; height: 470px; }
+  .st { position: absolute; width: 270px; border: 2px solid var(--ink); background: #fff; padding: 12px 14px; font-size: 17px; line-height: 1.4; font-weight: 700; }
+  .st h4 { margin: 0 0 6px; font-family: var(--font-mono); font-weight: 800; font-size: 14px; letter-spacing: .08em; color: var(--hot); }
+  .st .q { font-family: var(--font-mono); font-weight: 500; font-size: 15px; background: var(--bone); padding: 4px 6px; display: block; margin: 4px 0; }
+  .st.hot { border-color: var(--hot); border-width: 3px; }
+  .res { position: absolute; font-family: var(--font-mono); font-weight: 800; font-size: 20px; }
+  .res.zero { color: var(--grey); }
+  .res.hit { color: var(--hot); }
+  .who { position: absolute; font-size: 15px; color: var(--grey); font-weight: 700; }
+</style>
+</head><body>
+<div id="fig">
+  <svg id="wires"></svg>
+
+  <div class="who" style="left:0;top:0">研究者が入力</div>
+  <div class="st" id="s1" style="left:0;top:26px;height:170px"><h4>INPUT</h4>日本語の質問<span class="q">教室での CO₂ の連続モニタリングの推奨サンプリング間隔と校正の手順は？</span></div>
+  <div class="st" id="s0" style="left:0;top:236px;height:200px"><h4>AGENT</h4>エージェントの指示文<br><span style="font-weight:500">出典を示す・研究室の結果と一般論を分ける・資料に無ければ明言する</span><br>＋ Space の資料5つ</div>
+
+  <div class="who" style="left:320px;top:0">Quick が自動で行う</div>
+  <div class="st" id="s2" style="left:320px;top:26px;height:130px"><h4>SEARCH 1</h4>日本語の検索語<span class="q">CO2 連続モニタリング サンプリング間隔…</span></div>
+  <div class="res zero" style="left:600px;top:70px">0件</div>
+  <div class="st" id="s3" style="left:320px;top:196px;height:180px"><h4>SEARCH 2</h4>英語に言い換えた検索語<span class="q">CO2 sensor calibration procedure sampling interval classroom</span></div>
+  <div class="res hit" style="left:600px;top:250px">8件</div>
+
+  <div class="st hot" id="s4" style="left:700px;top:26px;width:500px;height:260px"><h4>OUTPUT</h4>
+    研究室の手順書を出典に答える<br>
+    <span style="font-weight:500">・sensor_deployment_protocol.md v2.1 第6節：生データ1分、集計5分<br>
+    ・センサーは SenseAir S8、精度は ±40ppm＋読み値の3%<br>
+    ・校正：設置前に24時間、ゼロ点は毎月、全面は6か月ごと</span><br>
+    <span style="color:var(--hot)">センサーデータが1時間刻みで手順書と合わないことも指摘</span></div>
+  <div class="who" style="left:700px;top:306px;width:500px;line-height:1.5">文書は英語で、検索語も英語にしたときに見つかった。<br>実行：2026-11-17 14:41、Amazon Quick Plus の無料トライアル</div>
+</div>
+<script>
+window.addEventListener('load', async () => { await document.fonts.ready;
+  wire('#s1', '#s2');
+  wire('#s2', '#s3', {from: 'b', to: 't'});
+  wire('#s3', '#s4', {elbow: 'hv', hot: true});
+  wire('#s0', '#s3', {elbow: 'hv'});
+  document.body.dataset.ready = '1';
+});
+</script>
+</body></html>

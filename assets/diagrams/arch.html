@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<!-- TRACK 03 の構成図：Amazon Quick の中の機能と、公式の手順で自分の AWS アカウントに作るもの。
+     公式ワークショップの構成図（Quick の機能 → AWS のデータ層と API）を発表者が描き直したもの -->
+<link rel="stylesheet" href="diagram.css">
+<script src="wires.js"></script>
+<style>
+  #fig { width: 1300px; height: 560px; }
+  .box { font-weight: 900; }
+  .tool { position: absolute; border: 2px dashed var(--ink); background: var(--bone); font-size: 16px; text-align: center; padding: 4px 6px; font-weight: 700; }
+  .note { position: absolute; font-size: 16px; color: var(--grey); font-weight: 700; line-height: 1.35; }
+  .faded { opacity: .45; }
+  .tag.grey { background: var(--grey); }
+</style>
+</head><body>
+<div id="fig">
+  <svg id="wires"></svg>
+
+  <div class="node" id="user" style="left:0;top:210px"><img src="../icons/Users.svg"><div class="t">研究者</div><div class="s">ブラウザで操作</div></div>
+
+  <!-- Amazon Quick -->
+  <div class="group" style="left:150px;top:20px;width:590px;height:520px">
+    <div class="gl"><img src="../icons/AmazonQuickSuite.svg">Amazon Quick</div>
+  </div>
+  <div class="box col" id="space" style="left:190px;top:76px;width:510px;height:70px">Space：研究室の資料5つ<small>アップロードすると AI が検索できる状態になる</small></div>
+  <div class="box ink" id="agent" style="left:190px;top:190px;width:160px;height:70px">チャット<br>エージェント</div>
+  <div class="box ink" id="research" style="left:370px;top:190px;width:160px;height:70px">Research</div>
+  <div class="box ink" id="flows" style="left:540px;top:190px;width:160px;height:70px">Flows</div>
+  <div class="note" style="left:190px;top:280px">3つの機能が、必要に応じて使う道具</div>
+  <div class="tool" id="t1" style="left:190px;top:310px;width:160px">ファイル内の検索</div>
+  <div class="tool" id="t2" style="left:370px;top:310px;width:160px">Web 検索</div>
+  <div class="tool" id="t3" style="left:540px;top:310px;width:160px">コード実行</div>
+  <div class="box hot" id="plan" style="left:190px;top:400px;width:510px;height:56px">今回は Plus の無料トライアルで実行</div>
+  <div class="note" style="left:190px;top:466px">AWS アカウントとは別の、メールアドレスで作る Quick のアカウント</div>
+
+  <!-- AWS -->
+  <div class="group dashed" style="left:780px;top:20px;width:520px;height:520px">
+    <div class="gl"><img src="../icons/AWSCloudlogo.svg">自分の AWS アカウント</div>
+  </div>
+  <div class="tag grey" style="left:1100px;top:8px">公式の手順・Enterprise</div>
+  <div class="node" id="cfn" style="left:976px;top:60px"><img src="../icons/AWSCloudFormation.svg"><div class="t">CloudFormation</div><div class="s">Quick も契約する</div></div>
+  <div class="lbl" style="left:800px;top:206px">データ</div>
+  <div class="node faded" id="s3" style="left:816px;top:232px"><img src="../icons/AmazonSimpleStorageService.svg"><div class="t">S3</div><div class="s">センサーデータ</div></div>
+  <div class="node faded" id="glue" style="left:976px;top:232px"><img src="../icons/AWSGlue.svg"><div class="t">Glue</div><div class="s">表の定義</div></div>
+  <div class="node faded" id="athena" style="left:1136px;top:232px"><img src="../icons/AmazonAthena.svg"><div class="t">Athena</div><div class="s">SQL で集計</div></div>
+  <div class="lbl" style="left:800px;top:376px">アクション</div>
+  <div class="node faded" id="apigw" style="left:816px;top:402px"><img src="../icons/AmazonAPIGateway.svg"><div class="t">API Gateway</div><div class="s">API の入口</div></div>
+  <div class="node faded" id="lambda" style="left:976px;top:402px"><img src="../icons/AWSLambda.svg"><div class="t">Lambda</div><div class="s">通知の模擬</div></div>
+  <div class="node faded" id="cognito" style="left:1136px;top:402px"><img src="../icons/AmazonCognito.svg"><div class="t">Cognito</div><div class="s">認証</div></div>
+</div>
+<script>
+window.addEventListener('load', async () => { await document.fonts.ready;
+  wire('#user', '#agent', {elbow: 'h'});
+  wire('#space', '#agent', {from: 'b', to: 't'});
+  wire('#space', '#research', {from: 'b', to: 't'});
+  wire('#space', '#flows', {from: 'b', to: 't'});
+  document.body.dataset.ready = '1';
+});
+</script>
+</body></html>
