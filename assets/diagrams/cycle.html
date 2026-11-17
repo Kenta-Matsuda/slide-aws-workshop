@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<!-- 枠組み：研究のサイクル（知的な作業）と、各段に付いて回る「研究を回す仕事」 -->
+<link rel="stylesheet" href="diagram.css">
+<script src="wires.js"></script>
+<style>
+  #fig { width: 1200px; height: 470px; }
+  .stg { position: absolute; top: 40px; width: 200px; height: 150px; border: 2px solid var(--ink); background: #fff; text-align: center; padding-top: 14px; }
+  .stg b { display: block; font-family: var(--font-head); font-weight: 400; font-size: 38px; line-height: 1.1; }
+  .stg span { display: block; font-size: 18px; margin-top: 12px; line-height: 1.4; }
+  .job { position: absolute; top: 280px; width: 200px; height: 120px; border: 2px dashed var(--grey); background: var(--bone); text-align: center;
+    display: flex; flex-direction: column; justify-content: center; font-size: 17px; line-height: 1.45; padding: 0 8px; }
+  .job.hot { border: 3px solid var(--hot); background: #fff; color: var(--ink); }
+  .job.hot em { color: var(--hot); font-style: normal; font-weight: 900; display: block; font-size: 15px; }
+  .rowlbl { position: absolute; left: 0; background: var(--bone); padding-right: 8px; font-size: 15px; color: var(--grey); font-weight: 800; letter-spacing: .04em; z-index: 2; }
+  .loop { position: absolute; left: 100px; top: 430px; width: 1000px; text-align: center; font-size: 16px; color: var(--grey); }
+</style>
+</head><body>
+<div id="fig">
+  <svg id="wires"></svg>
+  <div class="rowlbl" style="top:12px">研究の知的な作業</div>
+  <div class="rowlbl" style="top:252px">各段に付いて回る「研究を回す仕事」</div>
+
+  <div class="stg" id="a1" style="left:0"><b>問う</b><span>研究の問いを<br>立てる</span></div>
+  <div class="stg" id="a2" style="left:250px"><b>調べる</b><span>先行研究を読み<br>空白を見つける</span></div>
+  <div class="stg" id="a3" style="left:500px"><b>計画する</b><span>仮説と方法を<br>決める</span></div>
+  <div class="stg" id="a4" style="left:750px"><b>確かめる</b><span>データを集めて<br>分析する</span></div>
+  <div class="stg" id="a5" style="left:1000px"><b>伝える</b><span>論文や発表で<br>成果を示す</span></div>
+
+  <div class="job" id="j1" style="left:0">研究室での議論<br>資料の引き継ぎ</div>
+  <div class="job" id="j2" style="left:250px">文献の収集と管理<br>要約の作成</div>
+  <div class="job hot" id="j3" style="left:500px"><em>制度の要請</em>研究費の申請<br>データ管理計画</div>
+  <div class="job" id="j4" style="left:750px">データの保存と管理<br>集計表の作成</div>
+  <div class="job hot" id="j5" style="left:1000px"><em>制度の要請</em>論文と根拠データの<br>即時公開・実績報告</div>
+
+  <div class="loop">伝えた成果から次の問いが生まれ、サイクルは繰り返す</div>
+</div>
+<script>
+window.addEventListener('load', async () => { await document.fonts.ready;
+  wire('#a1', '#a2'); wire('#a2', '#a3'); wire('#a3', '#a4'); wire('#a4', '#a5');
+  document.body.dataset.ready = '1';
+});
+</script>
+</body></html>

@@ -1,12 +1,12 @@
 ---
 marp: true
-title: 研究室に AI の同僚を 4 人 ― Amazon Quick for Research をやってみた
-description: AWS×文教 LT。AWS 公式ハンズオン Amazon Quick for Research を実際に動かした記録
+title: 研究サイクルを AI で一周させる ― AWS Quick for Research の応用
+description: AWS×文教 LT。AWS 公式ハンズオン「Amazon Quick for Research」を応用し、研究サイクル全体を AWS Quick で回した記録
 lang: ja
 theme: talk2026
 paginate: true
 size: 16:9
-header: '<div class="prog"><i></i><i></i><i></i><i></i></div>'
+header: '<div class="prog"><i></i><i></i><i></i><i></i><i></i></div>'
 style: |
   section.dense img.wide { max-height: 410px; width: auto; max-width: 100%; margin: 0 auto; }
   section.dense img.wide.short { max-height: 370px; }
@@ -18,15 +18,14 @@ style: |
 
 <div class="rec">REC</div>
 
-# 研究室に<br><span class="o">AI の同僚を</span><br><span class="hot">4</span>人<span class="dot">.</span>
+# 研究サイクルを<br><span class="o">AI で</span><br>一周<span class="dot">.</span>
 
-<div class="meta"><span>AWS 公式ハンズオン「Amazon Quick for Research」をやってみた</span><span><span class="fill">発表者名</span></span></div>
+<div class="meta"><span>AWS 公式ハンズオン「Amazon Quick for Research」の応用</span><span><span class="fill">発表者名</span></span></div>
 
 <!--
 【ノート】20秒。
-こんにちは。今日は、AWS が公式に公開している研究者向けのハンズオン「Amazon Quick for Research」を、実際に自分の手で最後まで動かしてみた話をします。
-タイトルの「AI の同僚を 4 人」というのは、このワークショップが Amazon Quick の機能を「4 人の AI チームメイト」として紹介しているところから来ています。
-まず、どんなワークショップなのかを見てみましょう。
+こんにちは。今日は、研究のサイクル、つまり問いを立てて、調べて、計画して、確かめて、伝える、という一連の流れを、AWS の AI サービスで一周させてみた話をします。
+題材にしたのは、AWS が公開している研究者向けの公式ハンズオンです。まず、今日の題材を紹介します。
 -->
 
 ---
@@ -35,20 +34,27 @@ style: |
 
 <p class="topic">題材</p>
 
-## ワークショップの概要
+## 今日の題材
 
-<p class="lead">AWS 公式の、大学の研究アシスタントと研究スタッフ向けの<em>約 2.5 時間</em>のハンズオン。</p>
+<p class="lead">業務向けの AI サービス <em>AWS Quick</em> と、AWS 公式の研究者向けハンズオンを使い、研究サイクル全体への応用を試した。</p>
 
-<img class="wide" src="assets/diagrams/shot-workshop.png" style="max-height:350px">
+<div class="stats">
+<div class="s"><div class="v">2.5<small>時間</small></div><div class="k">公式ハンズオンの所要時間<br>大学の研究スタッフ向け</div></div>
+<div class="s"><div class="v">5<small>段</small></div><div class="k">AI で回した研究の段<br>問う から 伝える まで</div></div>
+<div class="s"><div class="v hot">3<small>分</small>30<small>秒</small></div><div class="k">研究サイクルを<br>一周させた時間</div></div>
+<div class="s"><div class="v">0<small>円</small></div><div class="k">今回かかった費用<br>無料トライアルで実施</div></div>
+</div>
 
-<p class="link">出典：<a href="https://catalog.us-east-1.prod.workshops.aws/workshops/ca04310e-b365-49f4-830b-a02bb06658e9/en-US">Amazon Quick for Research｜AWS Workshop Studio</a></p>
+<p class="note">AWS Quick は 2026 年 11 月 9 日に Amazon Quick から改称された。ハンズオンの名前は改称前のまま</p>
+
+<p class="link">出典：<a href="https://catalog.us-east-1.prod.workshops.aws/workshops/ca04310e-b365-49f4-830b-a02bb06658e9/en-US">Amazon Quick for Research｜AWS Workshop Studio</a>・<a href="https://aws.amazon.com/about-aws/whats-new/2026/11/amazon-quick-aws-quick/">Amazon Quick is now AWS Quick｜AWS What's New</a></p>
 
 <!--
-【ノート】40秒。
-これがワークショップのトップページです。AWS の公式ワークショップのサイト、Workshop Studio に置かれています。
-対象は、大学の博士課程の研究アシスタントや研究スタッフです。文献レビューやデータの整理といった繰り返しの作業を減らし、自分の分野に合わせた AI アシスタントを、コードを書かずに作ることを目指しています。
-所要時間は約 2.5 時間。AWS のイベントでは用意されたアカウントで進めますが、自分の AWS アカウントでも進められる手順が付いています。
-今日はこのワークショップを、4 つのトラックに分けて紹介します。
+【ノート】45秒。
+題材は 2 つです。1 つは AWS Quick。業務の調査や分析、自動化を AI エージェントにやってもらうサービスで、つい先日、11 月 9 日に Amazon Quick から AWS Quick に名前が変わりました。
+もう 1 つは、AWS 公式のハンズオン「Amazon Quick for Research」です。大学の研究アシスタントや研究スタッフ向けで、所要時間は 2.5 時間ほどです。
+私はこのハンズオンを一通りやったうえで、その仕組みを研究のサイクル全体に広げ、問う・調べる・計画する・確かめる・伝えるの 5 つの段を、1 本の流れとして AI に回させてみました。一周は 3 分 30 秒、費用は無料トライアルの範囲でゼロでした。
+今日はこの順番で話します。
 -->
 
 ---
@@ -58,16 +64,17 @@ style: |
 ### Tracklist
 
 <div class="tracks">
-<div class="row main"><span class="n">01</span><span>背景</span></div>
-<div class="row main"><span class="n">02</span><span>4人のチームメイト</span></div>
-<div class="row main"><span class="n">03</span><span>仕組み</span></div>
-<div class="row main"><span class="n">04</span><span>使うときの注意</span></div>
+<div class="row main"><span class="n">01</span><span>研究における AI 活用の背景</span></div>
+<div class="row main"><span class="n">02</span><span>研究サイクルと AI の役割分担</span></div>
+<div class="row main"><span class="n">03</span><span>AI で研究サイクルを一周</span></div>
+<div class="row main"><span class="n">04</span><span>AWS Quick を支える仕組み</span></div>
+<div class="row main"><span class="n">05</span><span>文教ビジネスへの示唆</span></div>
 </div>
 
 <!--
-【ノート】15秒。
-流れはこの 4 つです。まず文教の現場の背景、次にワークショップの中心である 4 人のチームメイト、それから技術的な仕組み、最後に費用や後片付けといった使うときの注意です。
-（配分：表紙と概要と目次で約 1 分半、TRACK 01 が約 2 分半、02 が約 9 分半、03 が約 4 分半、04 が約 4 分半。合計は約 22 分。持ち時間が短いときは、03 を「全体の構成」と「1 回の処理」の 2 枚に、02 の各チームメイトを 1 枚ずつに絞る）
+【ノート】20秒。
+まず、なぜいま研究に AI なのかという背景。次に、研究のサイクルのどこを AI に任せられるかという枠組み。そのうえで、実際に一周させた実践、それを支える AWS の仕組み、最後に文教ビジネスへの示唆です。
+（配分：表紙・題材・目次で約 1 分半、TRACK 01 が約 3 分半、02 が約 3 分、03 が約 8 分、04 が約 8 分、05 が約 2 分半。合計は約 26 分。持ち時間が短いときは 04 を「3 層」「構成」「統制」の 3 枚に、03 を「問う」「計画する」「一周して分かったこと」に絞る）
 では背景からです。
 -->
 
@@ -79,17 +86,11 @@ style: |
 
 ### Background
 
-<div class="big">背景</div>
-
-<div class="qpair">
-<div class="c"><b>研究者</b>研究に使いたい時間</div>
-<div class="a">→</div>
-<div class="c q"><b>実際は？</b>教育・学内事務・資料づくり</div>
-</div>
+<div class="big">研究における AI 活用の背景</div>
 
 <!--
 【ノート】10秒。
-最初のトラックは背景です。研究者が研究に使える時間は、実際どれくらいあるのでしょうか。
+最初のトラックは、研究における AI 活用の背景です。研究の現場がいま何に時間を取られているのかを、国のデータで見ていきます。
 -->
 
 ---
@@ -100,29 +101,29 @@ style: |
 
 <p class="topic">研究時間</p>
 
-## 研究時間の割合
+## 研究時間の減少
 
-<p class="lead">大学教員が勤務時間のうち研究に使う割合は、約 20 年で <em>46.5% から 32.2%</em> に下がった。</p>
+<p class="lead">大学教員が研究に使う時間の割合は、約 20 年で <em>46.5% から 32.2%</em> に下がり、教育の時間が増えた。</p>
+
+<p class="caption">大学教員の職務時間の割合・2002 年度と 2023 年度</p>
 
 <div class="hbars">
-<div class="hb n"><span class="nm">2002 年度</span><span class="track"><span class="bar" style="width:93%;display:block"></span></span><span class="val">46.5%</span></div>
-<div class="hb n"><span class="nm">2008 年度</span><span class="track"><span class="bar" style="width:72.4%;display:block"></span></span><span class="val">36.2%</span></div>
-<div class="hb n"><span class="nm">2013 年度</span><span class="track"><span class="bar" style="width:70%;display:block"></span></span><span class="val">35.0%</span></div>
-<div class="hb n"><span class="nm">2018 年度</span><span class="track"><span class="bar" style="width:65.8%;display:block"></span></span><span class="val">32.9%</span></div>
-<div class="hb q"><span class="nm">2023 年度</span><span class="track"><span class="bar" style="width:64.4%;display:block"></span></span><span class="val">32.2%</span></div>
+<div class="hb n"><span class="nm">研究 2002</span><span class="track"><span class="bar" style="width:93%;display:block"></span></span><span class="val">46.5%</span></div>
+<div class="hb q"><span class="nm">研究 2023</span><span class="track"><span class="bar" style="width:64.4%;display:block"></span></span><span class="val">32.2%</span></div>
+<div class="hb n"><span class="nm">教育 2002</span><span class="track"><span class="bar" style="width:47.4%;display:block"></span></span><span class="val">23.7%</span></div>
+<div class="hb"><span class="nm">教育 2023</span><span class="track"><span class="bar" style="width:60.8%;display:block"></span></span><span class="val">30.4%</span></div>
+<div class="hb n"><span class="nm">学内事務 2002</span><span class="track"><span class="bar" style="width:39.8%;display:block"></span></span><span class="val">19.9%</span></div>
+<div class="hb"><span class="nm">学内事務 2023</span><span class="track"><span class="bar" style="width:39.4%;display:block"></span></span><span class="val">19.7%</span></div>
 </div>
 
-<p class="note">大学等教員のフルタイム換算係数。2023 年度は 2025 年 1 月の再公表値</p>
-
-<p class="link">出典：<a href="https://www.mext.go.jp/content/20250116-mxt_chousei01-000046785_1.pdf">文部科学省「令和5年度 大学等におけるフルタイム換算データに関する調査」結果の再公表について</a></p>
+<p class="link">出典：<a href="https://www.mext.go.jp/content/20250418-mxt_chousei01-000040124.pdf">文部科学省「令和5年度 大学等におけるフルタイム換算データに関する調査」概要</a>・<a href="https://www.mext.go.jp/content/20250116-mxt_chousei01-000046785_1.pdf">同 結果の再公表</a></p>
 
 <!--
-【ノート】45秒。
-文部科学省が 5 年ごとに行っている調査に、大学の教員が勤務時間のうち研究にどれくらい使っているかを測るものがあります。
-2002 年度には 46.5% でしたが、2023 年度は 32.2% です。20 年ほどで、研究に使える時間の割合が 3 分の 2 くらいに減っています。
-文部科学省は、教育活動や大学運営・学内事務の割合が増えたと分析しています。
-ちなみに 2023 年度の値は、一度公表されたあと誤りが見つかって、2025 年 1 月に再公表されています。今日の数字は再公表のほうです。
-研究以外の作業を AI に任せられないか。これがワークショップの出発点です。では、ワークショップが想定している研究室を見てみましょう。
+【ノート】50秒。
+文部科学省は 5 年ごとに、大学の教員が勤務時間をどう使っているかを調べています。
+2002 年度、研究に使う時間は 46.5% でした。2023 年度は 32.2% です。約 20 年で 3 分の 2 ほどに減っています。代わりに増えたのが教育で、23.7% から 30.4% になりました。学内事務はおよそ 2 割のまま、横ばいです。
+同じ調査では、研究時間の制約として、教授会などの学内会議を含む大学運営業務を挙げる教員が最も多くなっています。
+では、研究そのものに付いて回る仕事はどうでしょうか。
 -->
 
 ---
@@ -131,24 +132,27 @@ style: |
 
 <div class="num">01</div>
 
-<p class="topic">題材</p>
+<p class="topic">研究を回す仕事</p>
 
-## ワークショップの研究室
+## 研究を回す仕事の増加
 
-<p class="lead">舞台は、<em>教育施設の室内の空気</em>を研究する環境科学の研究室。資料は研究室の手順書・文献・センサーデータ。</p>
+<p class="lead">研究費を受けると、データの管理計画や論文の即時公開といった<em>研究を回す仕事</em>が、制度として求められるようになった。</p>
 
-<div class="rules">
-<div class="r hl"><span class="k">研究テーマ</span><span>教室の CO₂ 濃度と、学生の認知機能の関係</span></div>
-<div class="r"><span class="k">手元の資料</span><span>センサー設置の手順書・47 件の研究の文献レビュー・ASHRAE と EPA の基準の要約・3 棟 9 台のセンサーの 1 か月分のデータ</span></div>
-<div class="r"><span class="k">頼まれごと</span><span>文献とセンサーデータを素早くまとめ、週例の資料を作る仕組みを用意する</span></div>
-</div>
+| 制度 | 対象と時期 | 研究者に求められること |
+|---|---|---|
+| データマネジメントプラン | 公募型の研究資金で 2023 年度までに導入率 100% が目標・科研費は 2024 年度以降の全課題 | 研究の開始時に管理計画を立て、公開したデータの情報を報告する |
+| 即時オープンアクセス | 2025 年度から新たに公募する科研費などの競争的研究費 | 論文と根拠データを、雑誌への掲載後すぐに機関リポジトリなどで公開する |
+| 研究費の申請と報告 | 2018〜2022 年度の 5 年間の平均 | 申請 4.5 件で計 99 時間、報告 2.5 件で計 37 時間 |
+
+<p class="link">出典：<a href="https://www8.cao.go.jp/cstp/kihonkeikaku/6honbun.pdf">第6期科学技術・イノベーション基本計画</a>・<a href="https://www.jsps.go.jp/j-grantsinaid/01_seido/10_datamanagement/index.html">日本学術振興会 科研費における研究データの管理・利活用</a>・<a href="https://www8.cao.go.jp/cstp/oa_240216.pdf">学術論文等の即時オープンアクセスの実現に向けた基本方針</a>・<a href="https://www.mext.go.jp/content/20250418-mxt_chousei01-000040124.pdf">文部科学省 FTE 調査 概要</a></p>
 
 <!--
-【ノート】40秒。
-ワークショップの舞台は、教育施設、つまり学校や大学の建物の室内の空気を研究している研究室です。
-研究テーマは、教室の CO₂ 濃度と学生の認知機能の関係。主人公はこの研究室の研究アシスタントで、指導教員から「文献とセンサーデータを素早くまとめて、週例ミーティングの資料を作れる仕組みを作ってほしい」と頼まれています。
-手元にあるのは、センサーの設置手順書、47 件の研究をまとめた文献レビュー、空調や空気質の基準の要約、それから 3 つの建物に置いた 9 台のセンサーの 1 か月分のデータです。どれもワークショップが用意したサンプルです。
-この「教室の空気」というテーマ自体が、実は日本の学校にも直結しています。
+【ノート】60秒。
+研究時間が減る一方で、研究そのものに付いて回る仕事は、制度として増えています。
+1 つ目はデータマネジメントプラン、DMP です。国の基本計画は、公募型の研究資金で 2023 年度までに DMP の導入率を 100% にする目標を掲げました。科研費では 2024 年度以降、新規も継続もすべての課題で、研究の開始時に管理計画を立て、公開したデータの情報を報告することになっています。
+2 つ目は即時オープンアクセスです。2025 年度から新たに公募する科研費などでは、論文と根拠データを、雑誌に載ったらすぐに機関リポジトリなどで公開することが義務になりました。
+3 つ目は、もともとある申請と報告です。同じ調査では、5 年間で申請に計 99 時間、報告に計 37 時間かかっています。
+研究者の時間が減り、回す仕事は増えている。では、国はどこに向かおうとしているのでしょうか。
 -->
 
 ---
@@ -157,27 +161,50 @@ style: |
 
 <div class="num">01</div>
 
-<p class="topic">学校の空気</p>
+<p class="topic">国の方向性</p>
 
-## 日本の学校の基準
+## 国の方向性
 
-<p class="lead">日本の学校では、換気の基準として教室の CO₂ を <em>1500ppm 以下</em>に保つことが望ましいとされている。</p>
+<p class="lead">文部科学省は、AI で研究プロセスを自動化し、<em>研究者が創造的な活動に専念できる環境</em>を目指す方針を決めた。</p>
+
+<p class="quote">「研究プロセスの自動化・知能化により知の生産性を向上させ、研究者がより高次元で創造的な活動に専念できる環境を実現する」<span>── 文部科学省「AI for Science の推進に向けた基本的な戦略方針」政策目的Ⅰ・2026 年 3 月 31 日</span></p>
 
 <div class="stats" style="grid-template-columns: repeat(3, 1fr)">
-<div class="s"><div class="v hot">1500<small>ppm</small></div><div class="k">学校環境衛生基準<br>文部科学省の告示。超えたら換気する</div></div>
-<div class="s"><div class="v">1000<small>ppm</small></div><div class="k">建築物環境衛生管理基準<br>特定建築物に当たる学校に適用</div></div>
-<div class="s"><div class="v" style="font-size:40px">1000・1500<small>ppm</small></div><div class="k">ワークショップの<br>「警告」と「危険」の値</div></div>
+<div class="s"><div class="v">5<small>年</small></div><div class="k">2026〜2030 年度の集中改革期間<br>研究力・計算資源・データの 3 本柱</div></div>
+<div class="s"><div class="v hot">15,868<small>件</small></div><div class="k">AI 研究の公募 SPReAD への応募<br>採択は 456 件・採択率 2.9%</div></div>
+<div class="s"><div class="v">31<small>件</small></div><div class="k">フラグシップ事業 ARiSE の採択<br>2026 年 9 月に発表</div></div>
 </div>
 
-<p class="link">出典：<a href="https://www.mext.go.jp/content/20230817-mext_kenshoku-100000613_2.pdf">文部科学省「学校環境衛生管理マニュアル」平成 30 年度改訂版</a>・<a href="https://www.mext.go.jp/content/20220902-mxt_kouhou01-000004520_01.pdf">文部科学省 事務連絡 令和 4 年 9 月 2 日</a></p>
+<p class="link">出典：<a href="https://www.mext.go.jp/content/20260403-mxt_jyohoka01-000048752_1.pdf">AI for Science の推進に向けた基本的な戦略方針</a>・<a href="https://www.mext.go.jp/content/20260629-mxt_jyohoka01-000050750_1.pdf">AI for Science 推進委員会 第5回 資料1</a>・<a href="https://www.jst.go.jp/pr/info/info1875/index.html">JST ARiSE 新規採択</a></p>
 
 <!--
-【ノート】45秒。
-日本の学校には、学校保健安全法に基づく「学校環境衛生基準」があります。換気の基準として、教室の CO₂ は 1500ppm 以下であることが望ましい、とされています。文部科学省のマニュアルでは、1500ppm を超えたら換気を行うことになっています。
-一方で、延べ床面積が大きい特定建築物に当たる学校には、ビル管理の法律の基準、おおむね 1000ppm 以下も適用されます。
-ワークショップでも、1000ppm を「警告」、1500ppm を「危険」の値として扱っていました。
-つまりこのワークショップの題材は、日本の学校や大学の施設管理や保健の現場と、そのままつながるテーマです。
-では、この研究室に来る 4 人の AI チームメイトを見ていきます。
+【ノート】55秒。
+文部科学省は今年 3 月、「AI for Science の推進に向けた基本的な戦略方針」を決めました。AI は仮説の生成、実験の設計、解析、知識の統合といった研究プロセスのあらゆる段階に関わり始めている、という認識です。
+政策の目的の 1 つ目に、こう書いてあります。「研究プロセスの自動化・知能化により知の生産性を向上させ、研究者がより高次元で創造的な活動に専念できる環境を実現する」。
+2026 年度から 2030 年度を集中改革期間とし、AI を使った研究を支える公募 SPReAD には 1 万 5 千件を超える応募があって、採択率は 2.9% でした。研究者の関心の高さが分かります。
+ここまでをまとめます。
+-->
+
+---
+
+<!-- _class: t1 -->
+
+<div class="num">01</div>
+
+<p class="topic">背景</p>
+
+<div class="big">研究の時間を、<br><span class="hot">研究に戻す。</span></div>
+
+| 観点 | 現状 |
+|---|---|
+| 研究者の時間 | 研究に使える割合は 46.5% から 32.2% に減った |
+| 研究を取り巻く要請 | データの管理計画や論文の即時公開が、制度として求められる |
+| 国の方向性 | AI で研究プロセスを自動化し、研究者を創造的な活動に戻す |
+
+<!--
+【ノート】30秒。
+背景をひと言でいうと、「研究の時間を、研究に戻す」です。研究者の時間は減り、研究を回す仕事は制度として増え、国は AI で研究プロセスを自動化する方向に舵を切りました。
+では、研究のどこを AI に任せられるのか。次のトラックで、研究のサイクルという枠組みで整理します。
 -->
 
 ---
@@ -186,19 +213,13 @@ style: |
 
 <div class="num">02</div>
 
-### Four AI Teammates
+### Framework
 
-<div class="big">4人のチームメイト</div>
-
-<div class="qpair">
-<div class="c"><b>研究室の資料</b>手順書・文献・データ</div>
-<div class="a">→</div>
-<div class="c q"><b>4人の AI</b>それぞれ何ができる？</div>
-</div>
+<div class="big">研究サイクルと AI の役割分担</div>
 
 <!--
 【ノート】10秒。
-2 つ目のトラックは、ワークショップの中心、4 人のチームメイトです。研究室の資料を渡すと、それぞれ何をしてくれるのでしょうか。
+2 つ目のトラックは、研究サイクルと AI の役割分担です。具体的な操作の前に、全体の地図を描きます。
 -->
 
 ---
@@ -207,77 +228,19 @@ style: |
 
 <div class="num">02</div>
 
-<p class="topic">チームメイト</p>
+<p class="topic">研究サイクル</p>
 
-## 4人のチームメイト
+## 研究のサイクル
 
-<p class="lead">Space に入れた研究室の資料を、<em>専門家・リサーチ・データ分析・自動化</em>の 4 人がそれぞれのやり方で使う。</p>
+<p class="lead">研究は「問う・調べる・計画する・確かめる・伝える」の繰り返しで、各段に<em>研究を回す仕事</em>が付いて回る。</p>
 
-<img class="wide" src="assets/diagrams/teammates.png" style="max-height:450px">
-
-<!--
-【ノート】45秒。
-これが全体像です。土台になるのは「Space」です。研究室の資料をまとめて入れておく場所で、ここに入れた資料を 4 人のチームメイトが使います。
-1 人目の「専門家」は、研究室の資料に基づいて質問に答えるチャットエージェントです。
-2 人目の「リサーチ」は、Web と研究室の資料を調べて、文献レビューのような報告書を書きます。
-3 人目の「データ分析」は、センサーデータを集計します。公式の手順では Quick Sight というダッシュボードの機能を使いますが、今回は事情があってエージェントで代わりにやりました。理由は 4 つ目のトラックで話します。
-4 人目の「自動化」は、Flows という機能で、決まった手順の作業をフローとして組み立てます。
-一番下の段が、今回実際にやったことです。順番に見ていきます。まずは専門家です。
--->
-
----
-
-<!-- _class: t2 dense -->
-
-<div class="num">02</div>
-
-<p class="topic">専門家</p>
-
-## 資料の準備
-
-<p class="navpills">チームメイト：<span class="pill hot">専門家</span><span class="pill">リサーチ</span><span class="pill">データ分析</span><span class="pill">自動化</span></p>
-
-<p class="lead">研究室の資料 5 つを Space に入れ、それを根拠に答えるチャットエージェントを作った。</p>
-
-<img class="wide" src="assets/diagrams/shot-space.png">
-
-<!--
-【ノート】45秒。
-最初に Space を作って、ワークショップのサンプル資料をアップロードしました。PDF が 2 つ、Word の文献レビュー、Markdown の手順書、それからセンサーデータの CSV です。数十秒で「準備完了」になり、AI が中身を検索できる状態になります。
-次に、この Space を知識として使うチャットエージェントを作ります。名前は「IAQ Research Assistant」。指示文には、出典を示すこと、研究室の結果と一般的な知見を分けること、資料に無いことは推測せず「無い」と言うこと、日本語で答えること、を書きました。
-今の Quick では、エージェントを作るのもチャットで頼む形になっていて、指示文は AI が清書してくれます。
-では、このエージェントに質問してみます。
--->
-
----
-
-<!-- _class: t2 dense -->
-
-<div class="num">02</div>
-
-<p class="topic">専門家</p>
-
-## 同じ質問への回答
-
-<p class="navpills">チームメイト：<span class="pill hot">専門家</span><span class="pill">リサーチ</span><span class="pill">データ分析</span><span class="pill">自動化</span></p>
-
-<p class="lead">同じ質問に、汎用の AI は<em>一般論</em>で、専門家エージェントは<em>研究室の手順書</em>で答えた。</p>
-
-| 回答の中身 | 汎用の Quick | 専門家エージェント |
-|---|---|---|
-| 根拠 | Web と一般的な知識 | 研究室の手順書 v2.1 の第 6 節 |
-| 測る間隔 | 目的別に 1 分・1〜5 分・5〜10 分 | <span class="hot">生データは 1 分、集計は 5 分</span> |
-| センサー | 機種を教えてほしいと聞き返す | SenseAir S8・精度は ±40ppm と読み値の 3% |
-| 校正の頻度 | 半年から 1 年に 1 回が目安 | ゼロ点は毎月・全面的な校正は 6 か月ごと |
-
-<p class="note">質問：教室での CO₂ の連続モニタリングで推奨されるサンプリング間隔と、センサーの校正の手順は？ 2026-11-17 に実行</p>
+<img class="wide" src="assets/diagrams/cycle.png">
 
 <!--
 【ノート】50秒。
-ワークショップの最初の演習は、同じ質問を、エージェントを使わない素の Quick と、作った専門家エージェントに聞いて比べるものです。質問は「教室で CO₂ を連続して測るとき、推奨される間隔と校正の手順は？」です。
-素の Quick は Web 検索をして、目的別に 1 分から 10 分といった一般論を表にまとめてくれました。内容としては正しいのですが、センサーの機種は「教えてくれれば調べます」と聞き返してきます。
-専門家エージェントは、研究室の手順書の版と節まで示して、「生データは 1 分、集計は 5 分」「センサーは SenseAir S8」「ゼロ点は毎月、全面的な校正は 6 か月ごと」と答えました。研究室の決まりで答えている、という違いです。
-しかも、この回答には続きがありました。
+研究は、大きく 5 つの段の繰り返しです。研究の問いを立てる、先行研究を調べて空白を見つける、仮説と方法を計画する、データで確かめる、そして成果を伝える。伝えた成果から次の問いが生まれます。
+上の段が研究の知的な作業だとすると、下の段は、それぞれに付いて回る「研究を回す仕事」です。資料の引き継ぎ、文献の管理、研究費の申請やデータ管理計画、データの保存、論文の公開と報告。オレンジの枠は、さっき見た制度の要請です。
+研究者の時間を奪っているのは、主にこの下の段です。では、この中で何を AI に任せ、何を人が持つべきでしょうか。
 -->
 
 ---
@@ -286,251 +249,52 @@ style: |
 
 <div class="num">02</div>
 
-<p class="topic">専門家</p>
+<p class="topic">役割分担</p>
 
-## 資料どうしの照合
+## 人と AI の分担
 
-<p class="navpills">チームメイト：<span class="pill hot">専門家</span><span class="pill">リサーチ</span><span class="pill">データ分析</span><span class="pill">自動化</span></p>
+<p class="lead">AI は<em>探す・整理する・下書きする・計算する</em>を担い、人は問いを選び、判断し、責任を持つ。</p>
 
-<p class="lead">回答の中で、センサーデータが<em>手順書の間隔と合わない</em>ことまで指摘した。</p>
-
-<img class="wide" src="assets/diagrams/shot-agent-mismatch.png">
-
-<!--
-【ノート】40秒。
-①で手順書の名前と版を示し、②で第 6 節の内容を引用しています。
-注目してほしいのは③です。Space に入っているセンサーデータの CSV は 1 時間刻みなのに、手順書では 1 分ごとに測ることになっている。「資料どうしで合っていません。1 時間平均に集計し直したデータだと思われますが、説明がありません」と、聞いてもいないのに指摘してくれました。
-新しく研究室に入った人が、手順書とデータの食い違いに最初から気づくのは難しいので、これは助かる指摘です。
-では、資料にそもそも書かれていないことを聞くとどうなるでしょうか。
--->
-
----
-
-<!-- _class: t2 dense -->
-
-<div class="num">02</div>
-
-<p class="topic">専門家</p>
-
-## 資料に無い質問
-
-<p class="navpills">チームメイト：<span class="pill hot">専門家</span><span class="pill">リサーチ</span><span class="pill">データ分析</span><span class="pill">自動化</span></p>
-
-<p class="lead">資料に無い数値を聞くと、推測で埋めずに<em>「情報がない」</em>と答えた。</p>
-
-<img class="wide" src="assets/diagrams/shot-boundary.png">
-
-<!--
-【ノート】35秒。
-ワークショップには、エージェントの限界を試す演習もあります。「私たちの 2024 年の研究で、CO₂ が 1200ppm を超えたときとワーキングメモリの相関の p 値は？」と聞きます。こんな研究は資料に入っていません。
-エージェントは「アップロード資料には、その p 値の情報がありません」と答え、推測の値も出しませんでした。そのうえで「論文や解析結果を Space に入れてくれれば、そこから抜き出します」と提案してきます。
-研究の場面では、もっともらしい数字を作られるのが一番困るので、ここは大事なポイントです。
-次は 2 人目、リサーチです。
--->
-
----
-
-<!-- _class: t2 dense -->
-
-<div class="num">02</div>
-
-<p class="topic">リサーチ</p>
-
-## 調査計画への指示
-
-<p class="navpills">チームメイト：<span class="pill">専門家</span><span class="pill hot">リサーチ</span><span class="pill">データ分析</span><span class="pill">自動化</span></p>
-
-<p class="lead">Research が作った調査計画に、<em>日本の学校の基準と比べる節</em>を人が足してから実行した。</p>
-
-<div class="chat">
-<div class="msg me"><span class="who">研究者</span>教育環境での CO₂ 濃度と認知機能の関係について、研究デザイン・しきい値・認知課題・交絡因子の観点で文献レビューをして。研究室の資料も参照して</div>
-<div class="msg ai"><span class="who">AI</span>計画を作りました。対象読者・内部資料の形式・長期暴露の定義を教えてください</div>
-<div class="msg me"><span class="who">研究者</span>読者は教育関係者と研究者。長期暴露は 1 学年以上。ASHRAE・WHO と日本の学校環境衛生基準を比べる節も追加して</div>
-</div>
-
-<p class="note">やり取りは要約。リサーチの目標はワークショップの文を日本語に訳したもの</p>
-
-<!--
-【ノート】45秒。
-リサーチは、Web と研究室の資料をまとめて調べて、報告書を書く機能です。
-ワークショップの目標の文を日本語に訳して、教育環境での CO₂ と認知機能の関係について文献レビューを頼みました。いきなり走らせず、まず調査計画を見せてもらえます。
-AI のほうから「読者は誰か」「長期暴露とはどれくらいの期間か」と確認が来たので答えつつ、私はここで 1 つ注文を足しました。「海外の基準と、日本の学校環境衛生基準を比べる節を追加して」です。
-人が計画の段階で、日本の文脈を差し込めるのがポイントです。では実行してみます。
--->
-
----
-
-<!-- _class: t2 dense -->
-
-<div class="num">02</div>
-
-<p class="topic">リサーチ</p>
-
-## 調査の実行
-
-<p class="navpills">チームメイト：<span class="pill">専門家</span><span class="pill hot">リサーチ</span><span class="pill">データ分析</span><span class="pill">自動化</span></p>
-
-<p class="lead">高速モードで <em>10 分以内</em>に、5 つの調査を並行して進め、論文を出典として集めた。</p>
-
-<img class="wide" src="assets/diagrams/shot-research-progress.png">
-
-<!--
-【ノート】30秒。
-実行中の画面です。①進み具合がパーセントで出て、②5 つの調査を並行して走らせ、③PubMed などの論文のページを出典として集めていきます。
-今回は速さ重視の「高速」モードで、10 分かからずに終わりました。ワークショップでは、本番の文献レビューなら 20〜30 分かかる「詳細」モードを使うよう勧めています。
-出来上がった報告書を見てみます。
--->
-
----
-
-<!-- _class: t2 dense -->
-
-<div class="num">02</div>
-
-<p class="topic">リサーチ</p>
-
-## 報告書の中身
-
-<p class="navpills">チームメイト：<span class="pill">専門家</span><span class="pill hot">リサーチ</span><span class="pill">データ分析</span><span class="pill">自動化</span></p>
-
-<p class="lead">報告書は日本の学校の基準を各国の値と並べて図にしたが、<em>数値の一部は原典での確認が必要</em>だった。</p>
-
-<img class="wide" src="assets/diagrams/shot-research-chart.png">
-
-<!--
-【ノート】45秒。
-報告書は日本語で、研究デザインの比較、しきい値、研究のギャップといった章立てになっていました。私が足した基準の比較の節もちゃんと入っていて、①のように、基準の値と認知への影響が始まる値を比べる図まで描いてくれました。
-②と③では、日本の学校基準の 1500ppm を「最も緩い」「見直しの余地がある」と書いています。これは AI の主張です。
-それに、細かく見ると、日本の基準は「1500ppm 以下が望ましい」なのに「定めている」と書いていたり、EPA の値の根拠が私には確かめきれなかったりしました。報告書は下書きとして使い、数値は原典で確かめる必要があります。
-次は 3 人目、データ分析です。
--->
-
----
-
-<!-- _class: t2 dense -->
-
-<div class="num">02</div>
-
-<p class="topic">データ分析</p>
-
-## センサーデータの集計
-
-<p class="navpills">チームメイト：<span class="pill">専門家</span><span class="pill">リサーチ</span><span class="pill hot">データ分析</span><span class="pill">自動化</span></p>
-
-<p class="lead">建物ごとの CO₂ の平均と 1000ppm を超えた時間を集計させると、<em>手元での集計と一致</em>した。</p>
-
-<img class="wide short" src="assets/diagrams/shot-data-table.png">
-
-<p class="note">発表者が手元の Python で同じ CSV を集計した値：ENG-B 559・SCI-A 548・LIB 547ppm、1000ppm 超えは Lab1 が 27 時間・他の 3 部屋が各 1 時間</p>
-
-<!--
-【ノート】45秒。
-公式の手順では、センサーデータを Athena という SQL のサービスにつなぎ、Quick Sight でダッシュボードを作ります。今回はそれができない環境だったので、CSV を Space に入れて、専門家エージェントに直接聞きました。
-「建物ごとの CO₂ の平均と、1000ppm を超えた時間が多い部屋は？」と聞くと、①建物ごとの平均と最大、②超えた 30 時間のうち 27 時間が工学棟の Lab1 に集中している、という表を返してきました。
-AI の数字をそのまま信じるわけにはいかないので、私も手元で同じ CSV を集計しましたが、平均値も時間数も完全に一致しました。
-どうやって計算したのかは、3 つ目のトラックで中身を見せます。最後の 4 人目、自動化です。
--->
-
----
-
-<!-- _class: t2 dense -->
-
-<div class="num">02</div>
-
-<p class="topic">自動化</p>
-
-## フローの生成
-
-<p class="navpills">チームメイト：<span class="pill">専門家</span><span class="pill">リサーチ</span><span class="pill">データ分析</span><span class="pill hot">自動化</span></p>
-
-<p class="lead">依頼文 1 つから、研究プロジェクトの <em>AWS の費用を見積もるフロー</em>を AI が 4 ステップで組んだ。</p>
-
-<img class="wide" src="assets/diagrams/shot-flow.png">
-
-<!--
-【ノート】40秒。
-自動化の演習では、研究プロジェクトの AWS の費用を見積もるフローを作ります。研究費の申請で、クラウドの費用を見積もる場面を想定したものです。
-ワークショップの依頼文をそのまま貼ると、①フローの名前と説明、③の 4 つのステップを AI が組み立てました。技術要件の分析、リソース量の算定、コストの見積もり、まとめと最適化の提案です。④見積もりのステップには Web 検索の道具が付いています。
-入力には、今回の題材に合わせて「キャンパスの 30 教室に CO₂ センサーを置き、1 分ごとのデータを 5 年保存する。月 100 ドル以内」と書きました。
-実行した結果がこちらです。
--->
-
----
-
-<!-- _class: t2 dense -->
-
-<div class="num">02</div>
-
-<p class="topic">自動化</p>
-
-## AI の自己点検
-
-<p class="navpills">チームメイト：<span class="pill">専門家</span><span class="pill">リサーチ</span><span class="pill">データ分析</span><span class="pill hot">自動化</span></p>
-
-<p class="lead">1 回目の見積もりは月 3.32 USD。Quick は<em>「単価を確かめず、記憶の値を使った」</em>と自ら報告した。</p>
-
-<img class="wide" src="assets/diagrams/shot-flow-issues.png">
-
-<!--
-【ノート】40秒。
-フローは 2 分ほどで終わり、見積もりは月 3.32 ドルでした。IoT Core から S3 に保存して、Athena で集計し、ダッシュボードは S3 と CloudFront の静的ページ、という構成です。
-面白かったのは、結果のあとに Quick が自分で「問題点」を挙げてきたことです。「コスト見積もりのステップが料金のページを取得せず、AI が覚えている単価を使った」「リージョンが途中でずれた」「監視の費用が入っていない」。
-そして「単価の Web での確認を必須にしますか？」といった改善案を出してきます。私はこれを採用して、もう一度動かしました。
--->
-
----
-
-<!-- _class: t2 dense -->
-
-<div class="num">02</div>
-
-<p class="topic">自動化</p>
-
-## 修正と再実行
-
-<p class="navpills">チームメイト：<span class="pill">専門家</span><span class="pill">リサーチ</span><span class="pill">データ分析</span><span class="pill hot">自動化</span></p>
-
-<p class="lead">人が改善案を選んで同じ入力で再実行すると、<em>前提が変わって月 206.33 USD</em> になった。</p>
-
-| 比べたこと | 1 回目 | 2 回目 |
+| 段 | AI に任せる | 人が決める |
 |---|---|---|
-| 月額の見積もり | 3.32 USD | <span class="hot">206.33 USD</span> |
-| ダッシュボードの前提 | S3 と CloudFront の静的ページ | <span class="hot">Quick Sight・閲覧者 50 人と作成者 2 人</span> |
-| 監視とセキュリティの費用 | 合計に入っていない | CloudWatch・KMS などを合計に入れた |
-| 単価の確かめ方 | AI が覚えている値 | 料金ページを読めず、多くが「未確認」 |
+| 問う | 資料と文献から問いの候補を出す | どの問いに取り組むか |
+| 調べる | 先行研究を集めて出典つきで要約する | 引用が正しいか |
+| 計画する | 研究計画と DMP の下書きを作る | 方法・公開範囲・倫理の判断 |
+| 確かめる | コードを書いてデータを集計する | 結果の解釈と検算 |
+| 伝える | 読み手に合わせて書き分ける | 何を主張するか |
 
-<p class="note">2 回目の後、Quick は「ダッシュボードの前提が実行のたびに変わる」「AWS の公開の料金データから単価を読むべき」と報告した</p>
+<p class="note">科研費の公募要領は、研究計画調書の作成に生成 AI を使うかを「研究者個人の責任において判断」するよう求めている</p>
+
+<p class="link">出典：<a href="https://www.jsps.go.jp/file/storage/kaken_kiban_2026_g_4978/r9_7_kobo.pdf">令和9年度 科学研究費助成事業 公募要領</a></p>
+
+<!--
+【ノート】55秒。
+分担の考え方はシンプルです。AI には、探す、整理する、下書きする、計算するを任せます。人は、どの問いに取り組むかを選び、結果を判断し、責任を持ちます。
+問うなら、AI が候補を出し、人が選ぶ。調べるなら、AI が要約し、人が引用の正しさを見る。計画するなら、AI が下書きし、データをどこまで公開するか、倫理的に問題がないかは人が決める。確かめるなら、AI が集計し、人が解釈と検算をする。伝えるなら、AI が書き分け、何を主張するかは人が決める。
+実際、科研費の公募要領も、研究計画調書に生成 AI を使うかどうかは研究者個人の責任で判断するよう求めています。
+この分担を、AWS Quick の機能に当てはめるとこうなります。
+-->
+
+---
+
+<!-- _class: t2 dense -->
+
+<div class="num">02</div>
+
+<p class="topic">AI の配置</p>
+
+## AI の配置
+
+<p class="lead">研究室の資料を Space に保存し、各段に AWS Quick の機能を割り当て、<em>Flows で一周をつなぐ</em>。</p>
+
+<img class="wide" src="assets/diagrams/mapping.png">
 
 <!--
 【ノート】50秒。
-改善版で同じ入力をもう一度流すと、今度は月 206 ドルになりました。60 倍です。
-原因は、2 回目の AI がダッシュボードに Quick Sight を選んだことでした。閲覧者 50 人分のライセンスだけで月 198 ドル、全体の 96% です。監視の費用はちゃんと入るようになり、リージョンのずれもなくなりました。
-ただ、単価の確認はまだ駄目でした。AWS の料金ページは、表の数字をスクリプトで後から表示する作りなので、フローの読み込み方では数字が取れなかったそうです。Quick 自身が「公開されている料金データのファイルから読むべき」と次の改善案を出しています。
-フローは速く作れますが、前提を人が決めて固定しないと、結果は大きくぶれる、ということがよく分かりました。
--->
-
----
-
-<!-- _class: t2 -->
-
-<div class="num">02</div>
-
-<p class="topic">チームメイト</p>
-
-<div class="big">作業は AI が速く、<br><span class="hot">前提は人が決める。</span></div>
-
-| チームメイト | AI がした作業 | 人が判断したこと |
-|---|---|---|
-| 専門家 | 資料を探し、出典つきで答える | 何を資料として渡すか |
-| リサーチ | 論文を集め、報告書を書く | 調べる観点と、数値の確かめ |
-| データ分析 | コードを書いて集計する | 集計結果の検算 |
-| 自動化 | フローを組み、自分で点検する | 見積もりの前提と、改善案の採用 |
-
-<!--
-【ノート】40秒。
-4 人のチームメイトをまとめると、「作業は AI が速く、前提は人が決める」です。
-専門家は資料を探して答えますが、何を資料として渡すかは人が決めます。リサーチは論文を集めて書きますが、どの観点で調べるか、数値が正しいかは人が見ます。データ分析の集計は人が検算し、自動化のフローでは、見積もりの前提と改善案を採るかどうかを人が決めました。
-では、これらが裏側でどう動いているのか。3 つ目のトラック、仕組みです。
+土台は Space です。研究室の資料を 1 か所にまとめて、AI が検索できるようにします。
+問う・計画する・伝えるは、チャットエージェントが資料を読んで、候補や下書きや説明文を作ります。調べるは Research という機能で、Web と研究室の資料を調べて出典つきでまとめます。確かめるは、AI が Python のコードを書いて実行します。
+そして一番下の Flows が、この 5 つの段を 1 本の流れにつなぎます。テーマを入れるだけで、問うから伝えるまでを一周させられる、という設計です。
+では、実際に一周させてみます。
 -->
 
 ---
@@ -539,19 +303,13 @@ AI の数字をそのまま信じるわけにはいかないので、私も手�
 
 <div class="num">03</div>
 
-### How It Works
+### Practice
 
-<div class="big">仕組み</div>
-
-<div class="qpair">
-<div class="c"><b>画面の操作</b>質問・計画・フロー</div>
-<div class="a">→</div>
-<div class="c q"><b>裏側では？</b>何がどう動いている？</div>
-</div>
+<div class="big">AI で研究サイクルを一周</div>
 
 <!--
 【ノート】10秒。
-3 つ目のトラックは仕組みです。画面の裏側で、何がどう動いていたのかを見ていきます。
+3 つ目のトラックは実践です。研究サイクルを、AI で実際に一周させました。
 -->
 
 ---
@@ -560,21 +318,75 @@ AI の数字をそのまま信じるわけにはいかないので、私も手�
 
 <div class="num">03</div>
 
-<p class="topic">構成</p>
+<p class="topic">ハンズオン</p>
 
-## 全体の構成
+## 公式ハンズオンで確かめた基本
 
-<p class="lead">Quick の 3 つの機能が Space の資料を使い、公式の手順では<em>自分の AWS アカウント</em>にもつなぐ。</p>
+<p class="lead">公式ハンズオンでは、4 つの機能が<em>研究室の資料に基づいて</em>回答・集計・自動化できることを確かめた。</p>
 
-<img class="wide" src="assets/diagrams/arch.png">
+| 機能 | 確かめたこと |
+|---|---|
+| チャットエージェント | 汎用の AI は一般論で回答したが、研究室の手順書の節を示して回答した。資料に無い p 値は「情報がない」と回答した |
+| Research | 5 つの調査を並行して進め、日本の学校の CO₂ 基準と各国の値を比べる図まで作成した |
+| コード実行 | センサーデータの集計が、発表者の手元での検算と一致した |
+| Flows | 研究費の見積もりのフローを作成すると、前提の置き方で月 3.32 USD にも 206.33 USD にもなった |
 
-<p class="note">公式ワークショップの構成図をもとに発表者が描き直した。右の AWS 側は、今回の Plus の環境ではつないでいない</p>
+<p class="note">題材は、教育施設の室内の空気を研究する研究室。資料は手順書・文献レビュー・基準の要約・3 棟 9 台のセンサーの 1 か月分のデータ</p>
+
+<!--
+【ノート】55秒。
+まず公式ハンズオンを一通りやって、基本を確かめました。題材は、学校や大学の建物の室内の空気、特に教室の CO₂ を研究している研究室です。
+チャットエージェントに研究室の手順書を渡すと、汎用の AI が一般論で答えた質問に、手順書の何節にこう書いてある、と答えました。資料に無い数値を聞くと、推測せずに「情報がない」と言います。
+Research は 5 つの調査を並行して進めて報告書を書き、日本の学校の CO₂ 基準と海外の基準を比べる図まで描きました。コード実行による集計は、私の手元の検算と一致しました。Flows で研究費の見積もりを作ると、前提の置き方次第で月 3 ドルにも 206 ドルにもなりました。
+この基本を、研究サイクル全体に広げます。
+-->
+
+---
+
+<!-- _class: t3 dense -->
+
+<div class="num">03</div>
+
+<p class="topic">準備</p>
+
+## 一周させる準備
+
+<p class="lead">5 つの段を担う<em>フロー「研究サイクル・アシスタント」</em>を、依頼文 1 つから AI に組ませた。</p>
+
+<img class="wide" src="assets/diagrams/shot-cycle-flow.png">
+
+<!--
+【ノート】45秒。
+研究室の資料 5 つを Space に入れたうえで、Flows に日本語でこう頼みました。「研究テーマを入れると、問う、調べる、計画する、確かめる、伝えるの 5 段で研究サイクルを一周させるフローを作って。計画では日本学術振興会の DMP の項目に沿った下書きも作り、最後に人が確認すべき点を並べて」。
+すると 1 分ほどで、6 つのステップのフローが出来上がりました。調べると計画するは Web 検索を道具に使います。確かめるのステップだけは AI ではなく、決まった集計の処理として作られています。
+研究テーマには「教室の CO₂ 濃度と学生の認知機能」を入れて実行しました。最初の段、問うから見ていきます。
+-->
+
+---
+
+<!-- _class: t3 dense -->
+
+<div class="num">03</div>
+
+<p class="topic">問う</p>
+
+## 問う
+
+<p class="navpills">研究サイクル：<span class="pill hot">問う</span><span class="pill">調べる</span><span class="pill">計画する</span><span class="pill">確かめる</span><span class="pill">伝える</span></p>
+
+<p class="lead">資料と文献の空白から研究課題の候補を 3 つ挙げ、<em>新規性と実現可能性で採点</em>して 1 つを選んだ。</p>
+
+| 研究課題の候補 | 新規性 | 実現可能性 | AI の判断 |
+|---|---|---|---|
+| 教室で 1000ppm を超える長さと時間帯を、建物の用途ごとに調べる | 2 | 5 | 実態調査にとどまる |
+| <span class="hot">CO₂ が高い時間帯に、PM2.5 や温度も一緒に上がるかを調べる</span> | <span class="hot">4</span> | <span class="hot">4</span> | <span class="hot">採用・合計が最も高い</span> |
+| CO₂ にさらされた時間の累積が、試験の成績を下げるかを調べる | 5 | 2 | 認知のデータが無い |
 
 <!--
 【ノート】50秒。
-全体の構成です。左が Amazon Quick の中です。研究者がブラウザで操作し、Space の資料を、チャットエージェント、Research、Flows の 3 つの機能が使います。それぞれ、ファイル内の検索、Web 検索、コード実行といった道具を、必要に応じて使い分けます。
-右は、公式の手順で自分の AWS アカウントに作るものです。センサーデータを置く S3、表の定義を持つ Glue、SQL で集計する Athena。それから、AI が通知やチケット作成を実行するための API を、API Gateway・Lambda・Cognito で作ります。
-今回、私は Quick を Plus という無料トライアルで動かしたので、右側にはつないでいません。その理由は 4 つ目のトラックで話します。まず、公式の手順で AWS 側をどう作るかを見ます。
+問うの段では、AI が研究室の文献レビューと手元のデータを見比べて、まだ分かっていないことから研究課題の候補を 3 つ出しました。そして新規性と実現可能性を 5 段階で採点しています。
+1 つ目は実態調査で、すぐできるけれど新しさは低い。3 つ目は一番新しいけれど、認知機能のデータが手元に無いので今は検証できない。そこで 2 つ目、CO₂ が高い時間帯に、PM2.5 や温度、湿度も一緒に上がっているかを調べる課題を選びました。もし一緒に上がっているなら、これまで「CO₂ の影響」とされてきた認知の低下に、ほかの要因が混ざっている可能性がある、という問いです。
+人が見るべきは、この選び方に納得できるかどうかです。次は調べるです。
 -->
 
 ---
@@ -583,19 +395,129 @@ AI の数字をそのまま信じるわけにはいかないので、私も手�
 
 <div class="num">03</div>
 
-<p class="topic">構成</p>
+<p class="topic">調べる</p>
 
-## 公式の準備手順
+## 調べる
 
-<p class="lead">マネジメントコンソールの CloudFormation で、テンプレートを開いて作成するだけで準備が終わる。</p>
+<p class="navpills">研究サイクル：<span class="pill">問う</span><span class="pill hot">調べる</span><span class="pill">計画する</span><span class="pill">確かめる</span><span class="pill">伝える</span></p>
 
-<img class="wide" src="assets/diagrams/shot-cfn.png">
+<p class="lead">先行研究を Web と研究室の資料から要約し、<em>研究室の資料の引用のうち確かめられないもの</em>を指摘した。</p>
+
+| 研究室の資料の記述 | AI が Web で確かめた結果 |
+|---|---|
+| Du et al. 2020 はメタ分析で、1000ppm 超で有意な低下 | 見つかった論文は「結果は一貫しない」とするレビューだった |
+| Zhang et al. 2022 は教室で成績が 12% 高い | 論文の存在を確認できなかった |
+| ASHRAE の基準は屋外より何 ppm 高いか | 資料によって 1000ppm と 700ppm の 2 通りがある |
+
+<p class="note">研究室の資料はハンズオン用のサンプル。表は AI の指摘で、発表者は論文を確かめていない</p>
+
+<!--
+【ノート】50秒。
+調べるの段では、選んだ課題の先行研究を、Web と研究室の資料から集めて要約しました。主張ごとに出典を付けるよう指示しています。
+面白かったのは、研究室の資料そのものへの指摘です。文献レビューでメタ分析とされていた論文は、Web で見つかったものは「結果は一貫しない」とするレビューでした。教室で成績が 12% 高かったという論文は、存在を確認できなかったそうです。
+実はこの文献レビューはハンズオン用のサンプルなので、架空の引用が混ざっていても不思議ではありません。ただ、研究室に引き継がれてきた資料をそのまま信じず、照らし合わせて疑ってくれるのは、調べる段の AI の大きな価値です。
+次は計画するです。
+-->
+
+---
+
+<!-- _class: t3 dense -->
+
+<div class="num">03</div>
+
+<p class="topic">計画する</p>
+
+## 計画する
+
+<p class="navpills">研究サイクル：<span class="pill">問う</span><span class="pill">調べる</span><span class="pill hot">計画する</span><span class="pill">確かめる</span><span class="pill">伝える</span></p>
+
+<p class="lead">仮説 5 つの研究計画と DMP の下書きを作成し、<em>人が決める箇所に印</em>を付けたが、前提の一部がデータとずれていた。</p>
+
+<img class="wide short" src="assets/diagrams/shot-cycle-dmp.png">
+
+<!--
+【ノート】55秒。
+計画するの段では、仮説を 5 つ立てた研究計画と、日本学術振興会の DMP の項目に沿った下書きを作りました。
+良かったのは、決まっていないことを勝手に埋めないことです。研究課題の番号や代表者は未記入のまま。データの保存期間は「研究が終わってから 10 年以上、ただし機関の規程を要確認」、生データを公開するかは「学校の同意次第で要判断」と、人が決めるべき箇所に印を付けています。
+一方で、データを「30 教室・1 分値」と書いています。実際のデータは 9 か所の 1 時間ごとの値です。計画のステップがデータを読めず、依頼文の前提のまま書いてしまったためで、この食い違いは後で AI 自身も指摘しました。
+次は確かめるです。
+-->
+
+---
+
+<!-- _class: t3 dense -->
+
+<div class="num">03</div>
+
+<p class="topic">確かめる</p>
+
+## 確かめる
+
+<p class="navpills">研究サイクル：<span class="pill">問う</span><span class="pill">調べる</span><span class="pill">計画する</span><span class="pill hot">確かめる</span><span class="pill">伝える</span></p>
+
+<p class="lead">センサーデータ 6,480 行をコードで集計した結果は、<em>手元の検算とすべて一致</em>した。</p>
+
+<div class="stats">
+<div class="s"><div class="v">552<small>ppm</small></div><div class="k">1 月の CO₂ の平均<br>最大は 1,205ppm</div></div>
+<div class="s"><div class="v">0.5<small>%</small></div><div class="k">1000ppm を超えた時間の割合<br>ほぼ実験室 Lab1 に集中</div></div>
+<div class="s"><div class="v">660<small>前後</small></div><div class="k">8〜18 時の平均 ppm<br>夜はおよそ 460</div></div>
+<div class="s"><div class="v hot">0.41</div><div class="k">CO₂ と PM2.5 の相関係数<br>仮説の基準 0.3 以上</div></div>
+</div>
+
+<p class="note">発表者が Python で同じ CSV を集計：平均 551.7・最大 1205・超過 0.46%・Lab1 は 3.75%・昼 653〜675・夜 459〜462・相関 0.406</p>
+
+<!--
+【ノート】50秒。
+確かめるの段では、センサーデータ 6,480 行をコードで集計しました。CO₂ の平均は 552ppm、最大は 1,205ppm。1000ppm を超えたのは全体の 0.5% で、ほとんどが実験室でした。授業のある 8 時から 18 時は 660ppm 前後、夜は 460 前後で、人がいると上がることがはっきり出ています。
+仮説に関わる CO₂ と PM2.5 の相関は 0.41 で、仮説の基準の 0.3 を超えました。
+私も手元で同じ集計をしましたが、すべて一致しました。しかも AI は「相関の種類と信頼区間はまだ確認していない」と、自分で限界を書いていました。
+最後の段、伝えるです。
+-->
+
+---
+
+<!-- _class: t3 dense -->
+
+<div class="num">03</div>
+
+<p class="topic">伝える</p>
+
+## 伝える
+
+<p class="navpills">研究サイクル：<span class="pill">問う</span><span class="pill">調べる</span><span class="pill">計画する</span><span class="pill">確かめる</span><span class="pill hot">伝える</span></p>
+
+<p class="lead">同じ結果から、研究室向けの要旨と<em>学校の先生向けのやさしい説明</em>を書き分けた。</p>
+
+<img class="wide" src="assets/diagrams/shot-cycle-tell.png">
+
+<!--
+【ノート】45秒。
+伝えるの段では、同じ結果から 2 種類の文章を書きました。
+1 つは研究室の週例ミーティング用の要旨で、背景・課題・方法・暫定結果・次の一手の順にまとまっています。
+もう 1 つは学校の先生向けの説明です。PM2.5 を「細かいちり」と言い換え、「CO₂ が多いときは PM2.5 も一緒に増える傾向があるが、一緒に動いているというだけで、どちらが原因かはまだ分からない」と、言い過ぎないように書いていました。教室でできる換気の工夫も添えています。
+研究の成果を学校の現場に返すところまで、一つの流れで書けるのは文教の立場からも面白いところです。
+では、一周してみて何が分かったかです。まず、1 回目の失敗からです。
+-->
+
+---
+
+<!-- _class: t3 dense -->
+
+<div class="num">03</div>
+
+<p class="topic">一周の結果</p>
+
+## 失敗からの立て直し
+
+<p class="lead">1 回目は集計のステップで止まったが、Quick は<em>原因を説明し、自分で修正して</em>再実行した。</p>
+
+<img class="wide" src="assets/diagrams/shot-cycle-fail.png">
 
 <!--
 【ノート】35秒。
-公式の、自分のアカウントで進める手順では、ワークショップのページにあるボタンを押すと、CloudFormation のクイック作成の画面が開きます。①です。
-②の説明文にあるとおり、このテンプレート 1 つで、S3、Glue、Athena を作り、さらに Amazon Quick の契約まで作ります。③のスタック名は既定のままで、IAM ロールを作ることを承認して「スタックの作成」を押すだけです。5 分ほどで終わりました。
-手軽ですが、中で何をしているかは知っておいたほうがいいので、テンプレートを読んでみました。
+実は 1 回目の実行は、確かめるのステップで止まりました。集計結果を表にする処理が、実行環境に入っていないライブラリを使っていたからです。
+Quick は「この処理が実行環境にないライブラリに依存していました。直してから再実行します」と原因を説明し、フローを自分で書き換えました。2 回目は 3 分 30 秒で最後まで通りました。
+では、一周して分かったことをまとめます。
 -->
 
 ---
@@ -604,11 +526,201 @@ AI の数字をそのまま信じるわけにはいかないので、私も手�
 
 <div class="num">03</div>
 
-<p class="topic">構成</p>
+<p class="topic">一周の結果</p>
 
-## テンプレートの中身
+## 一周して分かったこと
 
-<p class="lead">スタックの中の Lambda が、Quick の契約と、<em>アカウント全体の設定</em>の変更まで行う。</p>
+<p class="lead">一周は 3 分 30 秒で回り、AI は自分で 37 の確認点を挙げたが、<em>前提のずれは人が修正する</em>必要があった。</p>
+
+| 分かったこと | 具体的には |
+|---|---|
+| 速く一周する | テーマ 1 つから、問いの候補・要約・計画と DMP・集計・2 種類の文章までが 3 分 30 秒で生成された |
+| 自分で点検する | 人が確認すべき点を 37 項目挙げ、フローの修正方法まで提案した |
+| 前提がずれる | 計画のステップがデータを読めず、計画の前提が実際のデータと食い違った |
+| 資料を疑える | 研究室の資料の引用のうち、確かめられないものを指摘した |
+
+<!--
+【ノート】50秒。
+一周してみて分かったことは 4 つです。
+1 つ目、速い。テーマを 1 つ入れるだけで、問いの候補から文章まで 3 分 30 秒で出てきます。
+2 つ目、自分で点検する。人が確認すべき点を 37 項目挙げ、計画のステップがデータを読めていないから直そう、とフローの改善まで提案してきました。
+3 つ目、ただし前提はずれる。計画の段がデータを読めず、実際と違う前提で書いていました。ここは人が気づいて直す必要があります。
+4 つ目、資料を疑える。研究室で引き継がれてきた資料の引用を、Web で照らして疑ってくれます。
+まとめると、こうです。
+-->
+
+---
+
+<!-- _class: t3 -->
+
+<div class="num">03</div>
+
+<p class="topic">実践</p>
+
+<div class="big">AI は一周を速く回し、<br><span class="hot">人は前提を正す。</span></div>
+
+| 段 | AI が行ったこと | 人が判断すること |
+|---|---|---|
+| 問う・調べる | 候補を採点し、資料の引用を疑った | 課題の選び方と引用の正しさ |
+| 計画する | 計画と DMP を下書きし、決める箇所に印を付けた | 前提のずれと、印を付けた箇所 |
+| 確かめる・伝える | 集計し、読み手ごとに書き分けた | 検算と、言い過ぎがないか |
+
+<!--
+【ノート】30秒。
+実践のまとめは「AI は一周を速く回し、人は前提を正す」です。
+AI は候補を採点し、下書きし、集計し、書き分けました。人がするのは、選び方に納得すること、前提のずれに気づくこと、検算すること、そして言い過ぎていないかを見ることでした。
+では、これを AWS はどういう仕組みで実現しているのか。4 つ目のトラックです。
+-->
+
+---
+
+<!-- _class: t4 dark eye -->
+
+<div class="num">04</div>
+
+### Architecture
+
+<div class="big">AWS Quick を支える仕組み</div>
+
+<!--
+【ノート】10秒。
+4 つ目のトラックは、AWS Quick を支える仕組みです。AWS の AI サービス全体の中での位置付けから入ります。
+-->
+
+---
+
+<!-- _class: t4 dense -->
+
+<div class="num">04</div>
+
+<p class="topic">全体像</p>
+
+## AWS の生成 AI の 3 層
+
+<p class="lead">AWS の生成 AI は「すぐ使う・エージェントを作る・モデルを作る」の 3 層で、AWS Quick は<em>最上段のすぐ使える AI</em> にあたる。</p>
+
+<img class="wide short" src="assets/diagrams/layers.png">
+
+<p class="link">出典：<a href="https://docs.aws.amazon.com/decision-guides/latest/decision-guides/genai-guide.html">Choosing a generative AI service｜AWS Decision Guide</a>・<a href="https://aws.amazon.com/jp/blogs/news/aws-jpps-seminar-2026-april/">AWS 公共セミナー 2026 開催報告</a></p>
+
+<!--
+【ノート】55秒。
+AWS は生成 AI のサービスを 3 つの層で説明しています。
+一番下は、AI のモデルそのものを作りたい人向けで、SageMaker AI や、学習用のチップ Trainium などです。
+真ん中は、AI エージェントを自分で作りたい人向けです。いろいろな基盤モデルを API で使える Amazon Bedrock、作ったエージェントを安全に動かす AgentCore などがここにあります。
+一番上が、モデルを選ばずにすぐ使える AI エージェントです。開発向けの Kiro、コンタクトセンターの Connect と並んで、AWS Quick がここに入ります。
+つまり Quick は、自分でエージェントを作らなくても、業務の担当者がブラウザからすぐに使える層の製品です。その中身を見ていきます。
+-->
+
+---
+
+<!-- _class: t4 dense -->
+
+<div class="num">04</div>
+
+<p class="topic">構成要素</p>
+
+## AWS Quick の構成
+
+<p class="lead">Space の資料を 3 つの機能が道具を使って処理し、組織向けのプランでは<em>自分の AWS アカウントのデータ</em>にも接続する。</p>
+
+<img class="wide short" src="assets/diagrams/arch.png">
+
+<p class="link">出典：<a href="https://docs.aws.amazon.com/quick/latest/userguide/what-is.html">What is AWS Quick｜AWS Quick ユーザーガイド</a></p>
+
+<!--
+【ノート】60秒。
+AWS Quick の中を図にしました。研究者はブラウザから使います。
+土台は Space で、資料をアップロードすると AI が検索できる状態になります。その上で、チャットエージェント、Research、Flows の 3 つの機能が動き、必要に応じて、ファイル内の検索、Web 検索、コード実行といった道具を使い分けます。
+外とのつなぎ先もあります。S3 や Google Drive などの資料をナレッジベースとして取り込んだり、MCP や OpenAPI という形式で外部の API をコネクタとして呼んだりできます。
+右側は、公式ハンズオンの手順で自分の AWS アカウントに作るものです。データを置く S3、表の定義の Glue、SQL で集計する Athena と、AI から呼ぶ API。ただしこの AWS 側につなぐのは組織向けのプランの機能で、今回の無料の Plus ではつないでいません。
+次に、エージェントが 1 回の質問で何をしているかを見ます。
+-->
+
+---
+
+<!-- _class: t4 dense -->
+
+<div class="num">04</div>
+
+<p class="topic">エージェント</p>
+
+## エージェントの 1 回の処理
+
+<p class="lead">日本語の検索語では 0 件で、<em>英語に言い換えた検索語</em>で手順書が見つかり、それを出典に回答した。</p>
+
+<img class="wide" src="assets/diagrams/agentflow.png">
+
+<!--
+【ノート】45秒。
+公式ハンズオンで、専門家エージェントにサンプリング間隔を聞いたときの、裏側の動きです。
+入力は日本語の質問と、エージェントの指示文、それに Space の資料です。Quick はまず日本語のまま資料を検索して、0 件でした。資料が英語だからです。
+すると自分で英語に言い換えて検索し直し、8 件を見つけて、手順書を出典に答えています。
+英語の論文や海外の手順書をそのまま Space に入れて、日本語で質問できる、ということです。
+次は、確かめるの段で使ったコード実行です。
+-->
+
+---
+
+<!-- _class: t4 dense -->
+
+<div class="num">04</div>
+
+<p class="topic">コード実行</p>
+
+## 集計のコード
+
+<p class="lead">集計は AI が<em>pandas のコードを書いて実行</em>した結果で、コードは成果物として後から確かめられる。</p>
+
+<img class="wide" src="assets/diagrams/shot-data-code.png">
+
+<!--
+【ノート】40秒。
+数字の集計は、AI が数字を読んで答えたのではなく、Python の pandas でコードを書いて実行した結果です。
+CSV を読み込み、建物ごとに平均と最大と件数を出し、1000ppm を超えた行を数えるコードが、成果物として残っています。
+コードが見えるので、どう計算したのかを人が後から確かめられます。手元の検算と一致したのも、このおかげです。
+次は Flows の仕組みです。
+-->
+
+---
+
+<!-- _class: t4 dense -->
+
+<div class="num">04</div>
+
+<p class="topic">フロー</p>
+
+## フローの仕組み
+
+<p class="lead">フローは AI エージェントと決まった処理の<em>ステップをつないだもの</em>で、失敗すると Quick が原因を読んで書き換える。</p>
+
+<div class="rules">
+<div class="r hl"><span class="k">ステップ</span><span>判断が要る段は AI エージェント、集計や結合は決まった処理のステップになる</span></div>
+<div class="r"><span class="k">道具</span><span>エージェントのステップは Web 検索や資料の検索を使える</span></div>
+<div class="r"><span class="k">修正</span><span>実行が失敗すると、Quick が原因を説明してフローを書き換え、履歴から元に戻せる</span></div>
+<div class="r"><span class="k">限界</span><span>表をスクリプトで表示する Web ページは読めない。料金ページの単価が取得できなかった</span></div>
+</div>
+
+<!--
+【ノート】45秒。
+Flows で作ったフローは、ステップを順につないだものです。判断が要る段、たとえば問いを選ぶ、計画を書く、といった段は AI エージェントになり、集計やまとめのような段は決まった処理のステップになります。
+エージェントのステップは Web 検索などの道具を使えます。
+実行が失敗すると、Quick が原因を読んでフローを書き換えます。書き換えは履歴に残り、元に戻すこともできます。
+限界もあります。公式ハンズオンの費用見積もりでは、AWS の料金ページが表をスクリプトで表示する作りのため、単価が読み取れませんでした。
+次は、AWS のデータとのつなぎ方です。
+-->
+
+---
+
+<!-- _class: t4 dense -->
+
+<div class="num">04</div>
+
+<p class="topic">データ接続</p>
+
+## AWS のデータとの接続
+
+<p class="lead">組織向けのプランでは Quick Sight から S3・Athena などに接続し、公式の手順では <em>CloudFormation が契約まで作成する</em>。</p>
 
 <div class="cols" style="grid-template-columns: 1.25fr 1fr; align-items:start">
 <div class="code marked">quicksight.create_account_subscription(
@@ -619,115 +731,22 @@ quicksight.update_spice_capacity_configuration(
 lf.put_data_lake_settings(DataLakeSettings={
   'DataLakeAdmins': <span class="k">current_admins</span>, ...})<span class="mk">③</span></div>
 <div class="syn">
-<div class="s"><span class="n">①</span><span><b>Quick の契約</b>　Enterprise で契約する。スタックを消しても契約は残る</span></div>
-<div class="s"><span class="n">②</span><span><b>容量の自動購入</b>　Quick のデータ保存領域が足りないと自動で買い足す</span></div>
-<div class="s"><span class="n">③</span><span><b>Lake Formation</b>　自分の Lambda 用のロールをデータレイクの管理者に加える</span></div>
+<div class="s"><span class="n">①</span><span><b>Quick の契約</b>　Enterprise で契約する。スタックを削除しても契約は残る</span></div>
+<div class="s"><span class="n">②</span><span><b>容量の自動購入</b>　Quick Sight のデータ保存領域を自動で買い足す</span></div>
+<div class="s"><span class="n">③</span><span><b>Lake Formation</b>　自分のロールをデータレイクの管理者に加える</span></div>
 </div>
 </div>
 
-<p class="note">workshop-infrastructure.yaml の Lambda のコードから抜粋・一部省略</p>
+<p class="note">Quick Sight が接続できる AWS のデータ：S3・Athena・Redshift・Aurora・OpenSearch など。コードは公式テンプレートの Lambda から抜粋・一部省略</p>
+
+<p class="link">出典：<a href="https://docs.aws.amazon.com/quick/latest/userguide/supported-data-sources.html">Supported data sources｜AWS Quick ユーザーガイド</a></p>
 
 <!--
-【ノート】50秒。
-テンプレートの中の Lambda のコードを抜粋しました。
-①で Quick の契約を作っています。エディションは Enterprise です。ワークショップのまとめのページにも書かれていますが、スタックを消しても、この契約は残ります。解約は別に CLI で行う必要があります。
-②では、Quick のデータ保存領域、SPICE が足りなくなったら自動で買い足す設定にしています。
-③は、アカウント全体の Lake Formation の設定に、自分のロールをデータレイクの管理者として加えています。
-どれもワークショップを動かすには必要な処理ですが、普段使っているアカウントで動かすなら、後片付けで元に戻すものが増えます。これも 4 つ目のトラックで話します。
-次は、専門家エージェントが 1 回の質問で何をしていたかです。
--->
-
----
-
-<!-- _class: t3 dense -->
-
-<div class="num">03</div>
-
-<p class="topic">エージェント</p>
-
-## 1 回の処理
-
-<p class="lead">日本語の検索語では 0 件で、<em>英語に言い換えた検索語</em>で手順書が見つかり、それを出典に答えた。</p>
-
-<img class="wide" src="assets/diagrams/agentflow.png">
-
-<!--
-【ノート】45秒。
-さっきのサンプリング間隔の質問で、裏側で何が起きていたかです。画面の「ファイルを検索しました」を開くと、検索の履歴が見られます。
-入力は日本語の質問と、エージェントの指示文、それに Space の資料です。Quick はまず日本語のまま「CO2 連続モニタリング サンプリング間隔」で資料を検索して、0 件でした。資料が英語だからです。
-すると自分で英語に言い換えて、「CO2 sensor calibration procedure sampling interval classroom」で検索し直し、8 件見つけて、手順書を出典に答えています。
-日本の研究室でも、英語の論文や海外の手順書をそのまま入れて、日本語で質問できる、ということです。
-次は、データ分析の集計の中身です。
--->
-
----
-
-<!-- _class: t3 dense -->
-
-<div class="num">03</div>
-
-<p class="topic">データ分析</p>
-
-## 集計のコード
-
-<p class="lead">エージェントは CSV を <em>pandas で読み込むコード</em>を書いて実行し、その出力から答えた。</p>
-
-<img class="wide" src="assets/diagrams/shot-data-code.png">
-
-<!--
-【ノート】40秒。
-集計の回答には「1 件の成果物を作成」と出ていて、開くとコードが入っていました。②です。
-③のとおり、エージェントは Python の pandas で CSV を読み込み、建物ごとに平均・最大・件数を出し、1000ppm を超えた行を部屋ごとに数えるコードを書いて、実行していました。
-AI が数字を「読んで」答えたのではなく、コードで計算していたので、手元の集計と一致したわけです。コードが見えるので、どう計算したかを人が後から確かめられます。
-最後に、フローの中身です。
--->
-
----
-
-<!-- _class: t3 dense -->
-
-<div class="num">03</div>
-
-<p class="topic">自動化</p>
-
-## フローの中身
-
-<p class="lead">フローの各ステップは AI エージェントで、料金の確認に Web 検索を使うが、<em>料金ページの数字は読み取れなかった</em>。</p>
-
-<div class="rules">
-<div class="r hl"><span class="k">ステップ</span><span>入力 4 項目 → 要件の分析 → 量の算定 → 見積もり → まとめ。どれもエージェント</span></div>
-<div class="r"><span class="k">計算ツール</span><span>AWS Pricing Calculator は画面の操作が要るため、フローは操作せず、入力する値の一覧を返す</span></div>
-<div class="r"><span class="k">料金ページ</span><span>表の数字をスクリプトで表示する作りのため、Web 検索の読み込みでは単価が取れなかった</span></div>
-<div class="r"><span class="k">次の改善案</span><span>AWS が公開している料金データのファイル、Price List から単価を読む</span></div>
-</div>
-
-<!--
-【ノート】45秒。
-フローは、入力フォームの 4 項目から始まって、要件の分析、量の算定、見積もり、まとめの 4 ステップで、どのステップも中身は AI エージェントでした。
-ワークショップの説明では、見積もりのステップで AI が AWS Pricing Calculator を操作することになっていますが、今回のフローは「計算ツールは対話的なブラウザが要るので操作しない。代わりに入力する値の一覧を返す」と説明していました。
-単価の確認がうまくいかなかったのは、AWS の料金ページが、表の数字をスクリプトで後から表示する作りだったからです。次の改善案として、AWS が公開している料金データのファイルから読むことを勧めていました。
-さて最後のトラックです。使うときの注意です。
--->
-
----
-
-<!-- _class: t4 dark eye -->
-
-<div class="num">04</div>
-
-### Before You Try
-
-<div class="big">使うときの注意</div>
-
-<div class="qpair">
-<div class="c"><b>試してみたい</b>研究室で使えそう</div>
-<div class="a">→</div>
-<div class="c q"><b>その前に</b>費用・制約・後片付け</div>
-</div>
-
-<!--
-【ノート】10秒。
-4 つ目のトラックは、使うときの注意です。試してみたくなったところで、費用、制約、後片付けを押さえておきます。
+【ノート】55秒。
+組織向けのプランでは、Quick Sight という BI の機能から、S3、Athena、Redshift といった AWS のデータに直接つなげます。公式ハンズオンの手順はまさにこれで、CloudFormation のテンプレート 1 つで、センサーデータの S3 と Glue と Athena、それに Quick の契約まで作ります。
+テンプレートの中の Lambda を読むと、①で Quick を Enterprise で契約し、②でデータの保存領域を自動で買い足す設定にし、③でアカウント全体の Lake Formation の管理者に自分のロールを加えています。
+便利な反面、スタックを消しても契約は残りますし、アカウント全体の設定も変わります。大学のアカウントで試すなら、作業前の状態を控えておくことをおすすめします。
+では、組織で使うときに気になる、データの扱いです。
 -->
 
 ---
@@ -736,66 +755,59 @@ AI が数字を「読んで」答えたのではなく、コードで計算し�
 
 <div class="num">04</div>
 
-<p class="topic">費用</p>
+<p class="topic">統制</p>
+
+## 統制とデータの扱い
+
+<p class="lead">入力したデータは<em>モデルの学習に使われず</em>、保存時と通信時は暗号化され、組織向けは IAM Identity Center で認証する。</p>
+
+| 観点 | AWS の説明 |
+|---|---|
+| 学習への利用 | 無料でも有料でも、顧客のデータを基盤モデルの学習に使わない |
+| 暗号化 | 保存時は既定で暗号化し、通信は TLS 1.2 以上。自分の鍵の利用は Enterprise |
+| 認証 | Free と Plus はメールアドレスなど、組織向けは IAM Identity Center か IAM フェデレーション |
+| 保存場所 | データは主リージョンにだけ保存する。東京リージョンでエージェントの機能が使える |
+| 安全策 | Amazon Bedrock Guardrails と Quick の安全策で入力を確認する |
+
+<p class="link">出典：<a href="https://docs.aws.amazon.com/quick/latest/userguide/sec-data-protection.html">Data protection</a>・<a href="https://docs.aws.amazon.com/quick/latest/userguide/regions.html">Regions</a>・<a href="https://aws.amazon.com/quick/faqs/">FAQ</a>｜AWS Quick</p>
+
+<!--
+【ノート】55秒。
+研究データや未発表の成果を扱うとき、一番気になるのはデータの扱いです。
+AWS は、無料のプランでも有料のプランでも、顧客のデータを基盤モデルの学習には使わないと明記しています。保存するデータは既定で暗号化され、通信も TLS 1.2 以上です。自分の鍵で暗号化したい場合は Enterprise が必要です。
+認証は、今回使った Free や Plus はメールアドレスなどで登録し、組織向けは大学の ID 基盤とつなげられる IAM Identity Center などを使います。
+データは主リージョンにだけ保存され、東京リージョンでもエージェントの機能が使えます。入力は Bedrock Guardrails などの安全策で確かめられます。
+次は料金です。
+-->
+
+---
+
+<!-- _class: t4 dense -->
+
+<div class="num">04</div>
+
+<p class="topic">料金</p>
 
 ## プランと料金
 
-<p class="lead">AWS アカウントで契約するプランには、ユーザーの料金に加えて<em>アカウントごとに月 250 USD</em>のインフラ料金がかかる。</p>
+<p class="lead">個人とチーム向けはメールアドレスで始められ、AWS のデータに接続する組織向けには<em>アカウントごとに月 250 USD</em> のインフラ料金がかかる。</p>
 
-| プラン | 料金 | 登録のしかた | AWS との接続 |
+| プラン | 料金 | 始め方 | AWS のデータとの接続 |
 |---|---|---|---|
 | Free | 0 USD | メールアドレスなど | なし |
 | Plus | 1 人 月 20 USD・年払いの場合 | メールアドレスなど | なし |
 | Professional | 1 人 月 20 USD と 月 250 USD | AWS のコンソール | あり |
-| Enterprise | <span class="hot">1 人 月 40 USD と 月 250 USD</span> | AWS のコンソール | あり・ダッシュボードの作成 |
+| Enterprise | <span class="hot">1 人 月 40 USD と 月 250 USD</span> | AWS のコンソール | あり |
 
-<p class="note">2026-11-17 時点の価格表。Plus は月払いなら 1 人 月 25 USD。新規の登録には 30 日の無料トライアルがある</p>
+<p class="note">2026-11-17 時点。他に Max と Essentials がある。新しい Plus のアカウントは 30 日無料、Enterprise は 25 人まで 30 日のトライアルがある</p>
 
-<p class="link">出典：<a href="https://aws.amazon.com/quick/pricing/">Amazon Quick の料金</a>・<a href="https://aws.amazon.com/quick/faqs/">Amazon Quick よくある質問</a></p>
-
-<!--
-【ノート】50秒。
-Amazon Quick には大きく 2 種類の入り方があります。
-上の 2 つ、Free と Plus は、メールアドレスや Google アカウントで登録する個人やチーム向けのプランで、AWS アカウントもクレジットカードも要りません。
-下の 2 つ、Professional と Enterprise は、AWS のコンソールから契約する組織向けのプランで、AWS のデータにつなげます。ただし、ユーザーごとの料金に加えて、アカウントごとに月 250 ドルのインフラ料金がかかります。
-公式のテンプレートが作るのは、一番下の Enterprise です。1 人でも月 290 ドルになります。
-どちらにも 30 日の無料トライアルがあるのですが、ここで少しつまずきました。
--->
-
----
-
-<!-- _class: t4 dense -->
-
-<div class="num">04</div>
-
-<p class="topic">費用</p>
-
-## 今回の進め方
-
-<p class="lead">公式の手順で作った Enterprise は無料トライアルかどうかを画面で確かめられず、<em>当日に解約して Plus に切り替えた</em>。</p>
-
-<div class="cols" style="grid-template-columns: 1fr 1.2fr; align-items:center">
-<div>
-
-1. CloudFormation で Enterprise を契約
-2. 管理画面にトライアルの表示がない
-3. CLI でその場で解約
-4. <em>カードを登録しない Plus の無料トライアル</em>で実行
-
-</div>
-<div>
-
-<img class="wide" src="assets/diagrams/shot-plan.png">
-
-</div>
-</div>
+<p class="link">出典：<a href="https://aws.amazon.com/quick/pricing/">AWS Quick の料金</a></p>
 
 <!--
 【ノート】50秒。
-公式のドキュメントには「初めて登録すると 25 ユーザーまで 30 日の無料トライアル」と書いてあります。そこで公式の手順どおりスタックを作ったのですが、Quick の管理画面のどこにも「トライアル中」という表示がなく、課金の情報も反映までに時間がかかるので、本当に無料なのか確かめられませんでした。
-月 290 ドルかかる可能性を抱えたまま進めるのは避けたかったので、契約はその場で CLI で解約しました。
-代わりに、メールアドレスで登録する Plus の無料トライアルに切り替えました。こちらはクレジットカードを登録しないので、料金がかかりようがありません。右の画面のとおり、30 日で期限が切れる表示が出ます。
-ただし、Plus にしたことで、できなくなったこともあります。
+料金は 2 系統です。上の 2 つ、Free と Plus は、メールアドレスや Google アカウントで登録する個人やチーム向けで、AWS アカウントは要りません。今回の実践は Plus の無料トライアルで、カードも登録していないので費用はゼロでした。
+下の 2 つは AWS のコンソールから契約する組織向けで、AWS のデータにつなげますが、ユーザーごとの料金に加えて、アカウントごとに月 250 ドルのインフラ料金がかかります。公式ハンズオンのテンプレートが作るのは一番下の Enterprise です。
+最後に、Quick を使わずに自分たちで作る場合と比べます。
 -->
 
 ---
@@ -804,105 +816,127 @@ Amazon Quick には大きく 2 種類の入り方があります。
 
 <div class="num">04</div>
 
-<p class="topic">制約</p>
+<p class="topic">自前の選択肢</p>
 
-## Plus でできないこと
+## 自前で作る選択肢
 
-<p class="lead">Plus では AWS のデータや自作の API につなげないため、公式の演習のうち <em>2 つを置き換え・省略</em>した。</p>
+<p class="lead">すぐ使うなら AWS Quick、自分たちの画面と仕組みで作るなら <em>Bedrock と AgentCore</em>、日本の大学には GenU で内製した例もある。</p>
 
-| 公式の演習 | Plus での扱い |
-|---|---|
-| Quick Sight で Athena のセンサーデータからダッシュボードを作る | <span class="hot">CSV を Space に入れ、エージェントに集計させた</span> |
-| OpenAPI のコネクタで、通知やチケット作成の API を呼ぶ | 自作できるのは MCP のコネクタだけだったため省略した |
-| 研究倫理審査の書類を扱うエージェント・共有・Quick Automate | 時間の都合で省略した |
+| 観点 | AWS Quick | Bedrock と AgentCore で作る | GenU を使う |
+|---|---|---|---|
+| 位置付け | すぐ使える AI エージェント | エージェントを作って動かす基盤 | AWS ジャパン有志の OSS |
+| 作る手間 | 不要・ブラウザで使う | 開発が必要 | デプロイして設定する |
+| 自由度 | 機能の範囲内 | 画面も処理も自由 | 中程度・改修できる |
+| 教育機関の例 | 今回の実践 | ― | 東北大学が全教職員に提供 |
 
-<p class="note">Plus で AWS の基盤につなげない点は FAQ の記載による。コネクタの種類は 2026-11-17 の画面で確認</p>
+<p class="note">東北大学は GenU を改修し、検討から 1 か月で内製。議事録の作成時間は 4 分の 1、運用費は従来の 3 分の 1 と報告されている</p>
+
+<p class="link">出典：<a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html">Amazon Bedrock AgentCore</a>・<a href="https://github.com/aws-samples/generative-ai-use-cases">GenU｜aws-samples</a>・<a href="https://aws.amazon.com/jp/blogs/news/aws-jpps-seminar-2026-april/">AWS 公共セミナー 2026 開催報告</a></p>
 
 <!--
-【ノート】40秒。
-Plus で置き換えたのは 2 つです。
-1 つ目は、Athena にあるセンサーデータから Quick Sight でダッシュボードを作る演習です。AWS の基盤につなぐのは Professional と Enterprise の機能なので、今日見せたように、CSV を Space に入れてエージェントに集計させる形に置き換えました。
-2 つ目は、AI から通知やチケット作成の API を呼ぶ演習です。Plus の画面で自作できるコネクタは MCP 形式だけで、ワークショップの OpenAPI 形式の API はつなげなかったので、省きました。
-ほかに、研究倫理審査のエージェントや Automate などの追加の演習は、時間の都合で省いています。
-そして、動かしたら後片付けです。
+【ノート】55秒。
+Quick を使わない選択肢もあります。
+Bedrock と AgentCore を使えば、モデルも画面も処理も自由にエージェントを作れます。そのぶん開発が必要です。
+その中間にあるのが、AWS ジャパンの有志が公開している OSS の GenU です。生成 AI のよくある使い方を詰め込んだアプリで、デプロイして設定すれば使え、改造もできます。東北大学は GenU を改修して全教職員に提供し、検討から 1 か月で内製、議事録の作成時間が 4 分の 1、運用費が従来の 3 分の 1 になったと報告されています。
+すぐ試すなら Quick、大学の仕組みに深く組み込むなら自前、という選び方になると思います。
+では最後のトラック、文教ビジネスへの示唆です。
 -->
 
 ---
 
-<!-- _class: t4 dense -->
+<!-- _class: t5 dark eye -->
 
-<div class="num">04</div>
+<div class="num">05</div>
 
-<p class="topic">後片付け</p>
+### Outlook
 
-## 後片付け
+<div class="big">文教ビジネスへの示唆</div>
 
-<p class="lead">スタックと契約を消すだけでなく、<em>スタックの外で変わった設定</em>も元に戻した。</p>
+<!--
+【ノート】10秒。
+最後のトラックは、文教ビジネスへの示唆です。
+-->
 
-| 対象 | やったこと | 確認した結果 |
+---
+
+<!-- _class: t5 dense -->
+
+<div class="num">05</div>
+
+<p class="topic">担い手</p>
+
+## 研究を支える担い手
+
+<p class="lead">研究を回す仕事を支える人と組織が、<em>AI の最初の導入先</em>になりうる。</p>
+
+| 担い手 | 現在担っていること | AI で変えられそうなこと・発表者の案 |
 |---|---|---|
-| Quick の Enterprise の契約 | 削除保護を外して CLI で解約 | UNSUBSCRIBED |
-| CloudFormation のスタック | バージョン管理された S3 を空にして削除 | スタックなし |
-| Lake Formation の管理者 | 追加されたロールを外す | 管理者なし・作業前と同じ |
-| Quick 用のサービスロール | スタックの外で作られたため手で削除 | ロールなし |
-| Lambda のロググループ | スタックを消しても残るため削除 | ロググループなし |
-| Plus で作ったもの | Space・エージェント・フロー・リサーチを削除 | どの一覧も空 |
+| 研究者 | 研究と、申請・報告・データ管理 | 問いの候補・要約・下書きを任せ、判断に時間を使う |
+| URA・研究推進部門 | 申請の支援や研究の管理 | 申請書や DMP の点検を、資料に基づくエージェントで支援する |
+| 図書館・情報基盤 | 機関リポジトリと即時公開 | 公開するデータの情報や説明文の下書きを整える |
+| 研究支援の事業者 | 研究支援のシステムやサービス | 研究サイクルを一周させる仕組みをサービスとして提供する |
+
+<p class="note">URA を配置する機関は 206、URA は 1,821 人で、前年度より 151 人増えた・令和 5 年度</p>
+
+<p class="link">出典：<a href="https://www.mext.go.jp/content/20251226-mxt_sanchi02-000040306_1-01-4.pdf">文部科学省「令和5年度 大学等における産学連携等実施状況について」概要</a></p>
 
 <!--
-【ノート】50秒。
-後片付けでやったことです。
-ワークショップの手順にあるのは、スタックの削除と、Quick の契約の解約です。契約は削除保護を外してから CLI で解約し、状態が UNSUBSCRIBED になったことを確かめました。S3 はバージョン管理が有効なので、古い版まで消してから削除します。
-加えて、手順には書かれていないものが 3 つありました。テンプレートが加えた Lake Formation の管理者、Lambda がスタックの外で作った Quick 用のロール、それからスタックを消しても残る Lambda のログです。作業前の状態を記録しておいたので、それと同じに戻しました。
-普段使っているアカウントで試すなら、作業前の状態を控えておくのがおすすめです。
-最後に、AI の出力の確かめ方をまとめます。
+【ノート】55秒。
+研究を回す仕事は、研究者だけでなく、それを支える人と組織が担っています。ここに AI を入れる余地があると考えています。ここからは私の案です。
+研究者は、問いの候補や要約や下書きを AI に任せて、判断に時間を使えます。研究費の申請を支える URA、リサーチ・アドミニストレーターは、令和 5 年度で全国 206 機関に 1,821 人と、前年より 151 人増えています。申請書や DMP の点検を、学内の規程を入れたエージェントで支えられるかもしれません。図書館や情報基盤は、即時公開に向けたデータの情報や説明文を整えられます。
+そして研究支援の事業者にとっては、今日のような研究サイクルを一周させる仕組みを、サービスとして届ける機会になります。
+では、導入するときの勘所です。
 -->
 
 ---
 
-<!-- _class: t4 dense -->
+<!-- _class: t5 dense -->
 
-<div class="num">04</div>
+<div class="num">05</div>
 
-<p class="topic">確かめ方</p>
+<p class="topic">導入の勘所</p>
 
-## 出力の確かめ方
+## 導入の勘所
 
-<p class="lead">AI の出力は、<em>確かめ方を決めてから</em>研究に使う。</p>
+<p class="lead">導入は<em>試す・つなぐ・確かめる</em>の 3 段で進める。</p>
 
-| AI の出力 | 確かめた方法 | 結果 |
-|---|---|---|
-| センサーデータの集計 | 手元の Python で同じ CSV を集計した | 平均・時間数とも一致 |
-| 報告書の基準の数値 | 文部科学省の告示とマニュアルを読んだ | 日本の 1500ppm は一致・「望ましい」が正しい |
-| 費用の見積もり | Quick 自身の点検の報告を読んだ | 単価は未確認と自ら報告 |
+<div class="steps">
+<div class="st"><span class="n">1</span><b>試す</b><span>Plus の無料トライアルで、研究室の資料を Space に保存して一周させる。費用はかからない</span></div>
+<div class="st"><span class="n">2</span><b>つなぐ</b><span>学内のデータや ID 基盤に接続する段階で、組織向けのプランと月 250 USD の基盤費を検討する</span></div>
+<div class="st hot"><span class="n">3</span><b>確かめる</b><span>検算・原典との照合・人の判断を、運用の手順に組み込む</span></div>
+</div>
 
 <!--
-【ノート】40秒。
-今回、AI の出力をどう確かめたかを並べます。
-データの集計は、手元で同じ計算をして一致を確かめました。報告書の基準の数値は、文部科学省の告示とマニュアルを読んで、1500ppm という値は合っていること、ただし「定めている」ではなく「望ましい」が正しいことを確かめました。費用の見積もりは、Quick 自身が単価は未確認だと報告してくれたので、そのまま研究費の申請には使えないと判断できます。
-AI が速く出してくれるぶん、確かめ方を先に決めておくのが大事だと感じました。
+【ノート】45秒。
+導入は 3 段で進めるのがよいと思います。
+1 段目は試す。Plus の無料トライアルなら、カードも要らずに、研究室の資料を Space に入れて一周させられます。
+2 段目はつなぐ。学内のデータや ID 基盤とつなぎたくなったら、組織向けのプランと、月 250 ドルの基盤費を検討します。公式ハンズオンのテンプレートはアカウントの設定も変えるので、作業前の状態を控えておくことも大事です。
+3 段目は確かめる。今日見たように、AI は前提を取り違えますし、引用も疑う必要があります。検算、原典との照合、人の判断を、運用の手順として組み込んでおきます。
+最後にまとめです。
 -->
 
 ---
 
-<!-- _class: t4 -->
+<!-- _class: t5 -->
 
-<div class="num">04</div>
+<div class="num">05</div>
 
-<p class="topic">使うときの注意</p>
+<p class="topic">展望</p>
 
-<div class="big">まず無料で試し、<br><span class="hot">確かめてから使う。</span></div>
+<div class="big">回す仕事は AI に、<br><span class="hot">研究は人に。</span></div>
 
-| 注意点 | 今回やったこと |
+| トラック | 言いたかったこと |
 |---|---|
-| 費用 | 料金が確かめられない契約は当日に解約し、Plus の無料トライアルで試した |
-| 制約 | Plus でつなげない AWS のデータは、CSV を Space に入れて代わりにした |
-| 後片付け | 作業前の状態を控え、スタックの外で変わった設定まで戻した |
-| 確かめ方 | 集計は検算し、報告書の数値は原典と照らした |
+| 背景 | 研究者の時間は減り、研究を回す仕事は制度として増えている |
+| 枠組み | 研究サイクルの各段で、AI は下書きと計算、人は判断を担う |
+| 実践 | AWS Quick で一周は 3 分 30 秒。前提のずれは人が正す |
+| 仕組み | Quick はすぐ使える AI で、組織のデータにも接続できる |
 
 <!--
-【ノート】30秒。
-4 つ目のトラックのまとめは「まず無料で試し、確かめてから使う」です。
-費用は、確かめられない契約はすぐ解約して、無料トライアルで試す。制約は、つなげないデータを CSV で代わりにする。後片付けは、作業前の状態を控えて、設定まで戻す。そして出力は、検算と原典で確かめる。
+【ノート】35秒。
+今日のまとめは「回す仕事は AI に、研究は人に」です。
+研究者の時間は減り、研究を回す仕事は増えています。研究サイクルの各段で、AI に下書きと計算を任せ、人は判断に集中する。AWS Quick なら、それを 3 分 30 秒で一周させられました。ただし前提のずれを正すのは人です。
+最後に、皆さんへのお願いです。
 -->
 
 ---
@@ -915,35 +949,33 @@ AI が速く出してくれるぶん、確かめ方を先に決めておくの�
 
 # 研究室の資料を<br><span class="o">Space に</span><br>入れてみよう<span class="dot">.</span>
 
-<div class="meta"><span>ワークショップ：Amazon Quick for Research｜AWS Workshop Studio</span><span>この資料は <b>CLAUDE CODE</b> と作りました</span></div>
+<div class="meta"><span>Amazon Quick for Research</span><span>この資料は <b>CLAUDE CODE</b> と作りました</span></div>
 
 <!--
 【ノート】20秒。
-研究に使える時間が減っている今、研究室の手順書や文献を 1 つの Space に入れるだけで、出典つきで答える同僚が 1 人増えます。Plus の無料トライアルならクレジットカードも要りません。
-ぜひ、皆さんの研究室の資料を Space に入れてみてください。ありがとうございました。
+無料トライアルなら、カードも要りません。まずは皆さんの研究室や、支援している大学の資料を 1 つの Space に入れて、研究サイクルを一周させてみてください。ありがとうございました。
 -->
 
 ---
 
-<!-- _class: t4 dense appendix -->
+<!-- _class: t5 dense appendix -->
 
-<div class="num">04</div>
+<div class="num">05</div>
 
 <p class="topic">付録</p>
 
 ## 付録：実行の記録
 
-<p class="lead">発表では使いません。質疑や後から読まれるときの手元資料です。今回の環境と、AI に渡した入力をまとめます。</p>
+<p class="lead">発表では使いません。質疑や後から読まれるときの手元資料です。AI に渡した入力と、実行した環境をまとめます。</p>
 
 | 項目 | 内容 |
 |---|---|
-| 実施日 | 2026 年 11 月 17 日。AWS の Enterprise の契約は同日に作成し、作成から 1 時間以内に解約しました |
-| Quick の環境 | Amazon Quick の Plus の無料トライアルです。メールアドレスで登録し、クレジットカードは登録していません |
-| 使った資料 | ワークショップのサンプル 5 つです。EPA_AQI_Guide.pdf、ASHRAE_62.1_Summary.pdf、iaq_literature_review.docx、sensor_deployment_protocol.md、classroom_sensors_2025.csv |
-| 質問の文 | ワークショップの英語の質問を、発表者が日本語に訳して入力しました |
-| エージェントの指示 | 出典を示す、研究室の結果と一般的な知見を分ける、資料に無いことは推測せずに明言する、日本語で答える、の 4 点を伝え、指示文は Quick が清書しました |
-| リサーチ | 高速モード。材料は Web 検索と Space です。計画の段階で、日本の学校環境衛生基準と比べる節を追加しました |
-| フローの入力 | キャンパスの 30 教室に CO₂ と PM2.5 のセンサーを置き、1 分ごとのデータを 5 年保存する。閲覧者 50 人、月 100 USD 以内、サーバーレスを優先 |
+| 実施日と環境 | 2026 年 11 月 17 日。AWS Quick の Plus の無料トライアルで、クレジットカードは登録していません |
+| 使った資料 | 公式ハンズオンのサンプル 5 つ。EPA_AQI_Guide.pdf、ASHRAE_62.1_Summary.pdf、iaq_literature_review.docx、sensor_deployment_protocol.md、classroom_sensors_2025.csv |
+| フローの依頼文 | 研究テーマを入れると、問う・調べる・計画する・確かめる・伝えるで一周し、計画では日本学術振興会の DMP の項目に沿った下書きを作り、最後に人が確認すべき点を並べる |
+| 実行 | テーマは「教室の CO₂ 濃度と学生の認知機能」。1 回目は 3 分 7 秒で集計のステップが失敗し、Quick の修正後、2 回目は 3 分 30 秒で完了しました |
+| 公式ハンズオン | チャットエージェント・Research・コード実行・費用見積もりのフローを同じ日に実施しました。質問はハンズオンの英語の文を発表者が日本語に訳しました |
+| 検算 | 集計の値は、発表者が Python で同じ CSV を集計して確かめました |
 
 <div class="gloss"><b>注</b>　AI の出力は実行のたびに変わります。数値や表現は、記録した日の 1 回の結果です。</div>
 
@@ -953,9 +985,32 @@ AI が速く出してくれるぶん、確かめ方を先に決めておくの�
 
 ---
 
-<!-- _class: t4 dense appendix -->
+<!-- _class: t5 dense appendix -->
 
-<div class="num">04</div>
+<div class="num">05</div>
+
+<p class="topic">付録</p>
+
+## 付録：公式ハンズオンとの違いと後片付け
+
+<p class="lead">発表では使いません。Plus では公式の手順の一部ができないため、置き換えた内容と、AWS アカウントの後片付けをまとめます。</p>
+
+| 項目 | 内容 |
+|---|---|
+| Quick Sight のダッシュボード | AWS のデータに接続するのは組織向けのプランの機能のため、CSV を Space に保存してエージェントに集計させました |
+| OpenAPI のアクション | Plus の画面で自作できるコネクタは MCP 形式だけだったため、通知やチケット作成の演習は省きました |
+| Enterprise の契約 | 公式の CloudFormation が Enterprise を自動で契約しました。トライアルかどうかを画面で確かめられず、作成から 1 時間以内に CLI で解約しました |
+| AWS の後片付け | スタックの削除、S3 を空にする、Lake Formation の管理者を元に戻す、Quick のサービスロールと Lambda のログの削除を行い、作業前と同じ状態に戻したことを CLI で確かめました |
+
+<!--
+【ノート】付録。発表では使わない。質疑で聞かれたときの手元資料。
+-->
+
+---
+
+<!-- _class: t5 dense appendix -->
+
+<div class="num">05</div>
 
 <p class="topic">付録</p>
 
@@ -965,14 +1020,16 @@ AI が速く出してくれるぶん、確かめ方を先に決めておくの�
 
 | 内容 | 出典 |
 |---|---|
-| ワークショップの手順・構成図・テンプレート | <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/ca04310e-b365-49f4-830b-a02bb06658e9/en-US">Amazon Quick for Research｜AWS Workshop Studio</a> |
-| 大学教員の研究時間の割合 | <a href="https://www.mext.go.jp/content/20250116-mxt_chousei01-000046785_1.pdf">文部科学省 令和5年度 大学等におけるフルタイム換算データに関する調査 結果の再公表</a> |
-| 学校の CO₂ の基準 | <a href="https://www.mext.go.jp/content/20230817-mext_kenshoku-100000613_2.pdf">文部科学省 学校環境衛生管理マニュアル 平成30年度改訂版</a> |
-| 特定建築物の CO₂ の基準 | <a href="https://www.mext.go.jp/content/20220902-mxt_kouhou01-000004520_01.pdf">文部科学省 事務連絡 令和4年9月2日</a> |
-| Quick の料金とプラン | <a href="https://aws.amazon.com/quick/pricing/">Amazon Quick の料金</a>・<a href="https://aws.amazon.com/quick/faqs/">Amazon Quick よくある質問</a> |
-| Quick の無料トライアル | <a href="https://docs.aws.amazon.com/quick/latest/userguide/signing-up.html">Signing up through the AWS Console｜Amazon Quick ユーザーガイド</a> |
+| 研究時間と申請・報告の時間 | <a href="https://www.mext.go.jp/content/20250418-mxt_chousei01-000040124.pdf">文部科学省 令和5年度 大学等におけるフルタイム換算データに関する調査 概要</a> |
+| データマネジメントプラン | <a href="https://www8.cao.go.jp/cstp/kihonkeikaku/6honbun.pdf">第6期科学技術・イノベーション基本計画</a>・<a href="https://www.jsps.go.jp/j-grantsinaid/01_seido/10_datamanagement/index.html">日本学術振興会 科研費の研究データの管理</a> |
+| 即時オープンアクセス | <a href="https://www8.cao.go.jp/cstp/oa_240216.pdf">学術論文等の即時オープンアクセスの実現に向けた基本方針</a> |
+| AI for Science | <a href="https://www.mext.go.jp/content/20260403-mxt_jyohoka01-000048752_1.pdf">AI for Science の推進に向けた基本的な戦略方針</a>・<a href="https://www.mext.go.jp/content/20260629-mxt_jyohoka01-000050750_1.pdf">推進委員会 第5回 資料1</a> |
+| 生成 AI と科研費 | <a href="https://www.jsps.go.jp/file/storage/kaken_kiban_2026_g_4978/r9_7_kobo.pdf">令和9年度 科研費 公募要領</a> |
+| URA | <a href="https://www.mext.go.jp/content/20251226-mxt_sanchi02-000040306_1-01-4.pdf">文部科学省 令和5年度 産学連携等実施状況 概要</a> |
+| AWS Quick | <a href="https://docs.aws.amazon.com/quick/latest/userguide/what-is.html">ユーザーガイド</a>・<a href="https://aws.amazon.com/quick/pricing/">料金</a>・<a href="https://aws.amazon.com/quick/faqs/">FAQ</a>・<a href="https://aws.amazon.com/about-aws/whats-new/2026/11/amazon-quick-aws-quick/">改称の発表</a> |
+| ハンズオン | <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/ca04310e-b365-49f4-830b-a02bb06658e9/en-US">Amazon Quick for Research｜AWS Workshop Studio</a> |
 
-<div class="gloss"><b>注</b>　法令や基準の解釈は発表者が調べて整理したものです。実際に使うときは原典と専門家に確かめてください。</div>
+<div class="gloss"><b>注</b>　制度の解釈は発表者が調べて整理したものです。実際に使うときは原典と専門家に確かめてください。</div>
 
 <!--
 【ノート】付録。発表では使わない。質疑で聞かれたときの手元資料。
